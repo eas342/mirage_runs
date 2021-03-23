@@ -112,11 +112,11 @@ input_data_path
 # In[7]:
 
 
-output_dir = './input_011_attribute_error/input_info'
+output_dir = '../input_014_trimming_stellar_sp'
 ensure_dir_exists(output_dir)
-output_yaml_dir = os.path.abspath('./input_011_attribute_error/yaml_files')
+output_yaml_dir = os.path.abspath('../input_014_trimming_stellar_sp/yaml_files')
 ensure_dir_exists(output_yaml_dir)
-output_data_dir = os.path.abspath('./sim_data_try_011_attribute_error')
+output_data_dir = os.path.abspath('../sim_data_try_014_trimming_stellar_sp')
 ensure_dir_exists(output_data_dir)
 
 
@@ -253,13 +253,16 @@ flux_units = 'flam'
 sed_file = os.path.join(output_dir, 'test_grism_tso_sed_file_wasp43.hdf5')
 
 
+## trim the wavelengths in the hope that it runs faster
+pts_keep = (wavelengths > 2.0 * u.micron) & (wavelengths < 5.4 * u.micron)
+
 # HDF5 files can contain multiple datasets, so make the flux and wavelength variables into lists, even though for TSO observations there will be only one source.
 
 # In[19]:
 
 
-fluxes = [fluxes]
-wavelengths = [wavelengths]
+fluxes = [fluxes[pts_keep]]
+wavelengths = [wavelengths[pts_keep]]
 
 
 # Save the spectrum in the hdf5 file. Give the dataset a special index number, defined by TSO_GRISM_INDEX, to help Mirage keep this source separate from any provided by other catalogs.
