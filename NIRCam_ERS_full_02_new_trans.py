@@ -100,7 +100,7 @@ path = os.path.dirname(yaml_generator.__file__)
 # In[5]:
 
 
-input_data_path = '/fenrirdata1/es_tso/sim_data/mirage_tso_notebook'
+input_data_path = '.'
 
 
 # In[6]:
