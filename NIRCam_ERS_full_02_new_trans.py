@@ -113,9 +113,9 @@ print("New Input Data Path: {}".format(input_data_path))
 
 
 
-output_yaml_dir = os.path.abspath('./input_015_ers_new_trans_spec/yaml_files')
+output_yaml_dir = os.path.abspath('./input_017_ers_new_trans_spec_segthresh/yaml_files')
 ensure_dir_exists(output_yaml_dir)
-output_data_dir = os.path.abspath('./sim_data_try_015_ers_new_trans_spec')
+output_data_dir = os.path.abspath('./sim_data_try_017_ers_new_trans_spec_segthresh')
 ensure_dir_exists(output_data_dir)
 output_dir = output_data_dir
 
@@ -656,7 +656,8 @@ yam = yaml_generator.SimInput(xml_file, pointing_file, catalogs=catalogs, verbos
                               output_dir=output_yaml_dir, simdata_output_dir=output_data_dir,
                               background=background, roll_angle=pav3,
                               dates=dates, datatype='linear, raw', dateobs_for_background=True,
-                              reffile_defaults='crds')
+                              reffile_defaults='crds',segmap_flux_limit=5.0,
+                              segmap_flux_limit_units='ADU/sec')
 
 yam.use_linearized_darks = True
 yam.create_inputs()
