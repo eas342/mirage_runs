@@ -11,7 +11,7 @@ system:
     f322w2_mag: 8.0
 planet:
     t0: 4384. ## transit center, seconds
-    per: 0.813473978 * 24. * 3600. ## seconds
+    per: 70284.1516992 ## seconds
     rp: 0.1588  ## rp/r*
     a: 4.97 ## a/r*
     inc: 82.109 ## inclination
@@ -19,7 +19,7 @@ planet:
     w: 90. ## longitude of periastron
     limb_model: "nonlinear" ## type of limb darkening model
     ld_u: [0.3, 0.1, 0.1, -0.1] ## limb darkening parameters
-    eclipse_file: 'input_015_ers_new_trans_spec/binned_WASP43b_model_transmission_02.csv'
+    spec_file: 'input_015_ers_new_trans_spec/binned_WASP43b_model_transmission_02.csv'
 background:
     level: 'medium' ## background level
     bkgd_sources_ra: [154.901589]

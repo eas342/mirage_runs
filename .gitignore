@@ -1,2 +1,5 @@
 *.DS_Store
 *~
+test_output/
+mirage_output_001*
+__pycache__/

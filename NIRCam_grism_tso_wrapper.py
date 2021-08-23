@@ -77,6 +77,7 @@ import stsynphot as stsyn
 from synphot import SourceSpectrum, SpectralElement
 from synphot import units
 import yaml
+import pdb
 
 from mirage.catalogs.hdf5_catalog import save_tso
 from mirage.catalogs.catalog_generator import GrismTSOCatalog, ImagingTSOCatalog, PointSourceCatalog
@@ -123,7 +124,7 @@ class grismWrapper(object):
 # In[5]:
 
     def __init__(self,input_data_path = 'mirage_input_001/',
-                 output_data_dir = 'mirage_output_001',
+                 output_dir = 'mirage_output_001',
                  xml_file="example_input.xml",
                  source_params="source_params.yaml"):
         """
@@ -141,7 +142,8 @@ class grismWrapper(object):
         """
         # In[7]:
         self.input_data_path = input_data_path
-        self.output_data_dir = os.path.abspath(output_data_dir)
+        self.output_dir = output_dir
+        self.output_data_dir = os.path.abspath(os.path.join(output_dir,'sim_data'))
         print("output data dir: {}".format(self.output_data_dir))
 
         # The yaml files that will serve as the inputs to Mirage will be saved in this directory
@@ -208,7 +210,7 @@ class grismWrapper(object):
         a.set_ylim(0, 2.5e-13)
         a.set_xlabel('Wavelength (microns)')
         a.set_ylabel('Flux density (FLAM)')
-        f.savefig(os.path.join(output_dir,'star_spec_check.png'),dpi=150)
+        f.savefig(os.path.join(self.output_dir,'star_spec_check.png'),dpi=150)
         
         # Set the units for the wavelength and flux density arrays. It's generally recommended to use flux denisty units of FLAM (erg / s / cm^2 / 𝐴˚). 
         
@@ -225,7 +227,7 @@ class grismWrapper(object):
         # In[58]:
         
         
-        sed_file = os.path.join(output_dir, 'test_grism_tso_sed_file_wasp43.hdf5')
+        sed_file = os.path.join(self.output_dir, 'test_grism_tso_sed_file_wasp43.hdf5')
         
         
         # **ES added** Trim the files to just the relevant wavelengths
@@ -342,7 +344,7 @@ class grismWrapper(object):
         a.scatter(waves, trans, color='red', marker='o')
         a.set_xlabel('Wavelength (microns)')
         a.set_ylabel('Transmission')
-        f.savefig(os.path.join(output_dir,'transmission_spec_check.png'),dpi=150)
+        f.savefig(os.path.join(self.output_dir,'transmission_spec_check.png'),dpi=150)
         
         
         
@@ -355,7 +357,7 @@ class grismWrapper(object):
         
         
         # Name of catalog file to hold information on the TSO source
-        grism_tso_catalog = os.path.join(output_dir,'tso_grism_source.cat')
+        grism_tso_catalog = os.path.join(self.output_dir,'tso_grism_source.cat')
         
         
         # Basic information on the source. Note that the object magnitude will be ignored if the saved stellar spectrum is in units of FLAM. Conversely, if the stellar spectrum has units of 'normalized', then Mirage will scale the spectrum to the magnitude indicated below.
@@ -419,7 +421,7 @@ class grismWrapper(object):
         
         # In[79]:
         
-        
+
         m = batman.TransitModel(params, times)
         flux = m.light_curve(params)
         
@@ -433,13 +435,13 @@ class grismWrapper(object):
         a.scatter(times, flux, color='red', marker='v')
         a.set_xlabel('Time (sec)')
         a.set_ylabel('Normalized Signal')
-        f.savefig(os.path.join(output_dir,'tseries_check.png'),dpi=150)
+        f.savefig(os.path.join(self.output_dir,'tseries_check.png'),dpi=150)
         
         
         # In[81]:
         
         
-        lightcurve_file = os.path.join(output_dir, 'example_lightcurve.hdf5')
+        lightcurve_file = os.path.join(self.output_dir, 'example_lightcurve.hdf5')
         
         
         # Place the lightcurve into a dictionary to prepare for saving. The keys are object indexes corresponding to objects in the Mirage input catalogs. 
@@ -471,7 +473,7 @@ class grismWrapper(object):
         # In[84]:
         
         
-        imaging_tso_catalog = os.path.join(output_dir, 'tso_imaging_source.cat')
+        imaging_tso_catalog = os.path.join(self.output_dir, 'tso_imaging_source.cat')
         
         
         # In[85]:
@@ -557,7 +559,7 @@ class grismWrapper(object):
         # In[92]:
         
         
-        bkgd_cat_file = os.path.join(output_dir, 'ptsrcs.cat')
+        bkgd_cat_file = os.path.join(self.output_dir, 'ptsrcs.cat')
         
         
         # In[93]:
