@@ -122,7 +122,7 @@ def show(array, title, min=0, max=1000):
 class grismWrapper(object):
 # In[5]:
 
-    def __init__(input_data_path = 'mirage_input_001/',
+    def __init__(self,input_data_path = 'mirage_input_001/',
                  output_data_dir = 'mirage_output_001',
                  xml_file="example_input.xml",
                  source_params="source_params.yaml"):
@@ -141,14 +141,14 @@ class grismWrapper(object):
         """
         # In[7]:
         self.input_data_path = input_data_path
-        self.output_dat_dir = os.path.abspath(output_data_dir)
+        self.output_data_dir = os.path.abspath(output_data_dir)
         print("output data dir: {}".format(self.output_data_dir))
 
         # The yaml files that will serve as the inputs to Mirage will be saved in this directory
         self.output_yaml_dir = os.path.abspath(os.path.join(input_data_path,'yaml_files'))
         print("output yaml: {}".format(self.output_yaml_dir))
         
-        dirList = [self.input_data_path,self.output_dat_dir,self.output_yaml_dir]:
+        dirList = [self.input_data_path,self.output_data_dir,self.output_yaml_dir]
         for oneDir in dirList:
             ensure_dir_exists(oneDir)
         
@@ -164,7 +164,7 @@ class grismWrapper(object):
         
         # In[13]:
         
-        self.sys_params_path = os.path.join(self.input_data_path,source_params)
+        self.sys_param_path = os.path.join(self.input_data_path,source_params)
         with open(self.sys_param_path) as sys_f:
             self.sys_params = yaml.safe_load(sys_f)
     
