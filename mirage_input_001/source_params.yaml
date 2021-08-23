@@ -3,7 +3,12 @@ stellar:
     teff: 4400 ##K
     metallicity: 0.0 ## [Fe/H]
     logg: 4.5 ## log(g)
+system:
     kmag: 8.0 ## vega mag
+    ra: 154.9081666 ## deg
+    dec: -9.806444444 ## deg
+    f444w_mag: 8.0
+    f322w2_mag: 8.0
 planet:
     t0: 4384. ## transit center, seconds
     per: 0.813473978 * 24. * 3600. ## seconds
@@ -14,6 +19,19 @@ planet:
     w: 90. ## longitude of periastron
     limb_model: "nonlinear" ## type of limb darkening model
     ld_u: [0.3, 0.1, 0.1, -0.1] ## limb darkening parameters
-    eclipse_file: 
+    eclipse_file: 'input_015_ers_new_trans_spec/binned_WASP43b_model_transmission_02.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [154.901589]
+    bkgd_sources_dec: [-09.81150]
+    bkgd_sources_f444w_mag: [14.3]
+    bkgd_sources_f322w2_mag: [14.3]
+    bkgd_sources_f182m_mag: [14.6]
+    bkgd_sources_f210m_mag: [14.3]
+    bkgd_sources_f470n_mag: [14.3]
 obs:
-    dur: 8800. ## duration to calculate interpolating function for exposure, seconds
+    dur: 100. ## duration to calculate interpolating function for exposure, seconds
+    dates: '2022-04-25' ## date
+    pav3: 0.0 ## position angle
+    date_obs: '2022-04-25'
+    time_obs: '02:50:06.000'

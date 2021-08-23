@@ -124,9 +124,20 @@ class grismWrapper(object):
 
     def __init__(input_data_path = 'mirage_input_001/',
                  output_data_dir = 'mirage_output_001',
-                 xml_file="example_input.xml")
+                 xml_file="example_input.xml",
+                 source_params="source_params.yaml"):
         """
         A wrapper for running NIRCam grism TSO simulations w/ MIRAGE
+        
+        input_data_path: str
+            Directory for input data: XML, source parameters. This
+            is also where Mirage will dump yaml files
+        output_data_dir: str
+            Directory for output data
+        xml_file: str
+            Name of the XML file made by APT. Put that and .pointings in the input path
+        source_params: str
+            The parameters of the system with the exoplanet
         """
         # In[7]:
         self.input_data_path = input_data_path
@@ -153,22 +164,28 @@ class grismWrapper(object):
         
         # In[13]:
         
+        self.sys_params_path = os.path.join(self.input_data_path,source_params)
+        with open(self.sys_param_path) as sys_f:
+            self.sys_params = yaml.safe_load(sys_f)
+    
+    
+    
+    def prep_sources(self):
         
-        t_eff = 4400  # surface temperature
-        metallicity = 0.0
-        log_g = 4.5  # surface gravity = 182 m/s^2
+        t_eff = self.sys_params['stellar']['teff']  # surface temperature
+        metallicity = self.sys_params['stellar']['metallicity']
+        log_g = self.sys_params['stellar']['logg'] # surface gravity
         sp = stsyn.grid_to_spec('ck04models', t_eff, metallicity, log_g) 
         
         
-        # Normalize the spectrum to be k = 9.06. There are two ways you can scale your spectrum. This first is shown here, where you manually scale the spectrum before saving to the hdf5 file. The second way is to leave the scaling to Mirage. In that case, you save the spectrum as-is, and set the flux units in the hdf5 file to 'normalized'. With that option, Mirage will automatically scale the spectrum to the magnitude indicated in the grism TSO source catalog. If you choose to scale the spectrum manually (and use flux units of 'flam' in the hdf5 file), then Mirage will ignore the source magnitude listed in the grism TSO catalog, and use the saved spectrum with no changes.
+        # Normalize the spectrum to be k = kmag. There are two ways you can scale your spectrum. This first is shown here, where you manually scale the spectrum before saving to the hdf5 file. The second way is to leave the scaling to Mirage. In that case, you save the spectrum as-is, and set the flux units in the hdf5 file to 'normalized'. With that option, Mirage will automatically scale the spectrum to the magnitude indicated in the grism TSO source catalog. If you choose to scale the spectrum manually (and use flux units of 'flam' in the hdf5 file), then Mirage will ignore the source magnitude listed in the grism TSO catalog, and use the saved spectrum with no changes.
         
         # In[49]:
-        
         
         # Normalize the spectrum
         bp = SpectralElement.from_filter('johnson_j')
         vega = SourceSpectrum.from_vega()
-        sp_norm = sp.normalize(8.0 * units.VEGAMAG, bp, vegaspec=vega)
+        sp_norm = sp.normalize(self.sys_params['system']['kmag'] * units.VEGAMAG, bp, vegaspec=vega)
         
         
         # Get wavelengths and flux densities of the spectrum
@@ -192,7 +209,6 @@ class grismWrapper(object):
         a.set_xlabel('Wavelength (microns)')
         a.set_ylabel('Flux density (FLAM)')
         f.savefig(os.path.join(output_dir,'star_spec_check.png'),dpi=150)
-        
         
         # Set the units for the wavelength and flux density arrays. It's generally recommended to use flux denisty units of FLAM (erg / s / cm^2 / 𝐴˚). 
         
@@ -256,21 +272,21 @@ class grismWrapper(object):
         
         # Esposito et al. 2017 parameters on NASA Exoplanet Archive
         params = batman.TransitParams()       # object to store transit parameters 
-        params.t0 = 4384.                        # time of inferior conjunction (This one is just offset from start)
-        params.per = 0.813473978 * 24. * 3600.    # orbital period, Esposito
-        params.rp = 0.1588                       # planet radius (in units of stellar radii) , Esposito
-        params.a = 4.97                         # semi-major axis (in units of stellar radii), Esposito
-        params.inc = 82.109                     # orbital inclination (in degrees) , Esposito
-        params.ecc = 0.                       # eccentricity 
-        params.w = 90.                        # longitude of periastron (in degrees) 
-        params.limb_dark = "nonlinear"        # limb darkening model 
-        params.u = [0.3, 0.1, 0.1, -0.1]      # limb darkening coefficients [u1, u2, u3, u4] 
+        params.t0 = self.sys_params['planet']['t0']                        # time of inferior conjunction (This one is just offset from start)
+        params.per = self.sys_params['planet']['per']    # orbital period, Esposito
+        params.rp = self.sys_params['planet']['rp']                      # planet radius (in units of stellar radii) , Esposito
+        params.a = self.sys_params['planet']['a']                         # semi-major axis (in units of stellar radii), Esposito
+        params.inc = self.sys_params['planet']['inc']                     # orbital inclination (in degrees) , Esposito
+        params.ecc = self.sys_params['planet']['ecc']                      # eccentricity 
+        params.w = self.sys_params['planet']['w']                        # longitude of periastron (in degrees) 
+        params.limb_dark = self.sys_params['planet']['limb_model']        # limb darkening model 
+        params.u = self.sys_params['planet']['ld_u']      # limb darkening coefficients [u1, u2, u3, u4] 
         
         
         # In[66]:
         
         
-        params.t0
+        print("Transit center param={}".format(params.t0))
         
         
         # Generate the array of times at which the lightcurve will be calculated. In this case we know that the total exposure time is about 570 seconds, so we extend the array of times just beyond that range.
@@ -278,7 +294,7 @@ class grismWrapper(object):
         # In[67]:
         
         
-        times = np.linspace(0, 8800., 1000)  # times at which to calculate light curve 
+        times = np.linspace(0, self.sys_params['obs']['dur'], 1000)  # times at which to calculate light curve 
         
         
         # <a id="transmission_spectrum"></a>
@@ -289,7 +305,7 @@ class grismWrapper(object):
         # In[68]:
         
         
-        dat = ascii.read('input_015_ers_new_trans_spec/binned_WASP43b_model_transmission_02.csv')
+        dat = ascii.read(self.sys_params['planet']['spec_file'])
         dat.colnames
         
         
@@ -310,7 +326,7 @@ class grismWrapper(object):
         # In[71]:
         
         
-        tran_spec_file = os.path.join(output_dir,'transmission_spectrum.txt')
+        tran_spec_file = os.path.join(self.output_dir,'transmission_spectrum.txt')
         tab = Table()
         tab['Wavelength'] = waves
         tab['Transmission'] = trans
@@ -347,10 +363,10 @@ class grismWrapper(object):
         # In[74]:
         
         
-        object_ra = (10. + 19./60. + 37.96/3600.) * 15.
-        object_dec = -1.0 * (9. + 48./60. + 23.20/3600.)
-        object_f444w_mag = 7.22
-        object_f322w2_mag = 7.23
+        object_ra = self.sys_params['system']['ra']
+        object_dec = self.sys_params['system']['dec']
+        object_f444w_mag = self.sys_params['system']['f444w_mag']
+        object_f322w2_mag = self.sys_params['system']['f322w2_mag']
         
         
         # Create the Grism TSO catalog object and populate RA, Dec, Batman parameters, times, and the name of the transmission spectrum file.
@@ -383,8 +399,9 @@ class grismWrapper(object):
         
         
         grism_cat.save(grism_tso_catalog)
-        
-        
+        self.grism_tso_catalog = grism_tso_catalog
+
+    
         # Examine the contents of the catalog. There should be only a single source.
         
         # In[78]:
@@ -487,7 +504,8 @@ class grismWrapper(object):
         
         
         tsimg_cat.save(imaging_tso_catalog)
-        
+        self.imaging_tso_catalog = imaging_tso_catalog
+
         
         # In[89]:
         
@@ -525,14 +543,15 @@ class grismWrapper(object):
         
         # In[91]:
         
+    def prep_backgrounds(self):
         
-        bkgd_sources_ra = [154.901589]
-        bkgd_sources_dec = [-09.81150]
-        bkgd_sources_f444w_mag = [14.3]
-        bkgd_sources_f322w2_mag = [14.3]
-        bkgd_sources_f182m_mag = [14.6]
-        bkgd_sources_f210m_mag = [14.3]
-        bkgd_sources_f470n_mag = [14.3]
+        bbkgd_sources_ra = self.sys_params['background']['bbkgd_sources_ra']
+        bkgd_sources_dec = self.sys_params['background']['bkgd_sources_dec']
+        bkgd_sources_f444w_mag = self.sys_params['background']['bkgd_sources_f444w_mag']
+        bkgd_sources_f322w2_mag = self.sys_params['background']['bkgd_sources_f322w2_mag']
+        bkgd_sources_f182m_mag = self.sys_params['background']['bkgd_sources_f182m_mag']
+        bkgd_sources_f210m_mag = self.sys_params['background']['bkgd_sources_f210m_mag']
+        bkgd_sources_f470n_mag = self.sys_params['background']['bkgd_sources_f470n_mag']
         
         
         # In[92]:
@@ -574,7 +593,9 @@ class grismWrapper(object):
         
         bkgd_cat.table
         
-        
+        self.bkg_cat_file = bkg_cat_file
+
+    def create_yaml(self):
         # <a id="yaml_files"></a>
         # ### Create input yaml files for Mirage
         
@@ -585,9 +606,9 @@ class grismWrapper(object):
         # In[97]:
         
         
-        catalogs = {'WASP-43': {'point_source': bkgd_cat_file,
-                                'tso_imaging_catalog': imaging_tso_catalog,
-                                'tso_grism_catalog': grism_tso_catalog,
+        catalogs = {'WASP-43': {'point_source': self.bkgd_cat_file,
+                                'tso_imaging_catalog': self.imaging_tso_catalog,
+                                'tso_grism_catalog': self.grism_tso_catalog,
                                 }
                    }
         
@@ -597,7 +618,7 @@ class grismWrapper(object):
         # In[98]:
         
         
-        background = 'medium'
+        background = self.sys_params['background']['level']
         
         
         # Set the desired telescope roll angle and date for the observation. 
@@ -605,15 +626,15 @@ class grismWrapper(object):
         # In[99]:
         
         
-        pav3 = 0.
-        dates = '2022-04-25'
+        pav3 = self.sys_params['obs']['pav3']
+        dates = self.sys_params['obs']['dates']
         
         
         # In[100]:
         
         
-        yam = yaml_generator.SimInput(xml_file, pointing_file, catalogs=catalogs, verbose=True,
-                                      output_dir=output_yaml_dir, simdata_output_dir=output_data_dir,
+        yam = yaml_generator.SimInput(self.xml_file, self.pointing_file, catalogs=catalogs, verbose=True,
+                                      output_dir=self.output_yaml_dir, simdata_output_dir=self.output_data_dir,
                                       background=background, roll_angle=pav3,
                                       dates=dates, datatype='linear, raw', dateobs_for_background=True,
                                       reffile_defaults='crds')
@@ -643,17 +664,17 @@ class grismWrapper(object):
         
         
         # In[111]:
+    def create(self):
         
-        
-        orig_A5yaml_path = os.path.join(output_yaml_dir,'jw00042001001_01101_00001_nrca5.yaml')
+        orig_A5yaml_path = os.path.join(self.output_yaml_dir,'jw00042001001_01101_00001_nrca5.yaml')
         paramDict = yaml.safe_load(open(orig_A5yaml_path))
         
         
         # In[112]:
         
         
-        paramDict['Output']['date_obs'] = '2022-04-25'
-        paramDict['Output']['time_obs'] = '02:50:06.000'
+        paramDict['Output']['date_obs'] = self.sys_params['obs']['date_obs']
+        paramDict['Output']['time_obs'] = self.sys_params['obs']['time_obs']
         
         
         # In[116]:
@@ -694,7 +715,8 @@ class grismWrapper(object):
         # In[118]:
         
         
-        info_tab
+        yaml.safe_dump(info_tab,open(os.path.join(self.output_dat_dir,'info_tab.yaml'),'w'),
+                       default_flow_style=False)
         
         
         # <a id="create_simulated_data"></a>
@@ -710,7 +732,7 @@ class grismWrapper(object):
         # In[119]:
         
         
-        gr_tso_yaml_file = os.path.join(output_yaml_dir, 'jw00042001001_01101_00002_nrca5.yaml')
+        gr_tso_yaml_file = os.path.join(self.output_yaml_dir, 'jw00042001001_01101_00002_nrca5.yaml')
         
         
         gr_f322w2 = GrismTSO(gr_tso_yaml_file, SED_file=sed_file, SED_normalizing_catalog_column=None,
@@ -725,7 +747,11 @@ class grismWrapper(object):
         # NOTE: This cell will take a while (> ~30 min) to run 
         gr_f322w2.create()
         
-
+    def do_all():
+        self.prep_sources()
+        self.prep_background()
+        self.create_yaml()
+        self.create()
 # <a id="accompanying_imaging_data"></a>
 # ### Accompanying Imaging TSO Data
 
