@@ -547,7 +547,7 @@ class grismWrapper(object):
         
     def prep_backgrounds(self):
         
-        bbkgd_sources_ra = self.sys_params['background']['bbkgd_sources_ra']
+        bkgd_sources_ra = self.sys_params['background']['bkgd_sources_ra']
         bkgd_sources_dec = self.sys_params['background']['bkgd_sources_dec']
         bkgd_sources_f444w_mag = self.sys_params['background']['bkgd_sources_f444w_mag']
         bkgd_sources_f322w2_mag = self.sys_params['background']['bkgd_sources_f322w2_mag']
@@ -590,12 +590,6 @@ class grismWrapper(object):
         bkgd_cat.save(bkgd_cat_file)
         
         
-        # In[96]:
-        
-        
-        bkgd_cat.table
-        
-        self.bkg_cat_file = bkg_cat_file
 
     def create_yaml(self):
         # <a id="yaml_files"></a>
