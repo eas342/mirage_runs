@@ -4,11 +4,11 @@ stellar:
     metallicity: 0.0 ## [Fe/H]
     logg: 4.5 ## log(g)
 system:
-    kmag: 8.0 ## vega mag
+    kmag: 17.0 ## vega mag
     ra: 154.9081666 ## deg
     dec: -9.806444444 ## deg
-    f444w_mag: 8.0
-    f322w2_mag: 8.0
+    f444w_mag: 17.0
+    f322w2_mag: 17.0
 planet:
     t0: 4384. ## transit center, seconds
     per: 70284.1516992 ## seconds
@@ -24,11 +24,11 @@ background:
     level: 'medium' ## background level
     bkgd_sources_ra: [154.901589]
     bkgd_sources_dec: [-09.81150]
-    bkgd_sources_f444w_mag: [14.3]
-    bkgd_sources_f322w2_mag: [14.3]
-    bkgd_sources_f182m_mag: [14.6]
-    bkgd_sources_f210m_mag: [14.3]
-    bkgd_sources_f470n_mag: [14.3]
+    bkgd_sources_f444w_mag: [20.3]
+    bkgd_sources_f322w2_mag: [20.3]
+    bkgd_sources_f182m_mag: [20.6]
+    bkgd_sources_f210m_mag: [20.3]
+    bkgd_sources_f470n_mag: [20.3]
 obs:
     dur: 100. ## duration to calculate interpolating function for exposure, seconds
     dates: '2022-04-25' ## date
