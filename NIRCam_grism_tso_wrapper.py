@@ -125,7 +125,7 @@ class grismWrapper(object):
 
     def __init__(self,input_data_path = 'mirage_input_001/',
                  output_dir = 'mirage_output_001',
-                 xml_file="example_input.xml",
+                 xml_file="wasp-79_minimal_example.xml",
                  source_params="source_params.yaml"):
         """
         A wrapper for running NIRCam grism TSO simulations w/ MIRAGE
@@ -156,7 +156,7 @@ class grismWrapper(object):
         
         self.xml_file = os.path.join(input_data_path, xml_file)
         
-        self.pointing_file = xml_file.replace('.xml', '.pointing')
+        self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
         
         # <a id="stellar_spectrum"></a>
@@ -227,7 +227,7 @@ class grismWrapper(object):
         # In[58]:
         
         
-        sed_file = os.path.join(self.output_dir, 'test_grism_tso_sed_file_wasp43.hdf5')
+        self.sed_file = os.path.join(self.output_dir, 'test_grism_tso_sed_file_wasp43.hdf5')
         
         
         # **ES added** Trim the files to just the relevant wavelengths
@@ -255,7 +255,7 @@ class grismWrapper(object):
         # In[64]:
         
         
-        with h5py.File(sed_file, "w") as file_obj:
+        with h5py.File(self.sed_file, "w") as file_obj:
             for i in range(len(output_fluxes)):
                 oneDat = [output_wavelengths[i].value, output_fluxes[i].value]
                 dset = file_obj.create_dataset(str(i+TSO_GRISM_INDEX), data=oneDat,
@@ -588,7 +588,8 @@ class grismWrapper(object):
         
         
         bkgd_cat.save(bkgd_cat_file)
-        
+
+        self.bkgd_cat_file = bkgd_cat_file
         
 
     def create_yaml(self):
@@ -656,7 +657,7 @@ class grismWrapper(object):
         # In[106]:
         
         
-        output_yaml_dir
+        print("Saving output to {}".format(self.output_yaml_dir))
         
         
         # In[111]:
@@ -728,10 +729,15 @@ class grismWrapper(object):
         # In[119]:
         
         
+                
+
+    def create_sim(self):
+        """
+        Create the simulate Mirage data (after all Yaml setup is done)
+        """
         gr_tso_yaml_file = os.path.join(self.output_yaml_dir, 'jw00042001001_01101_00002_nrca5.yaml')
         
-        
-        gr_f322w2 = GrismTSO(gr_tso_yaml_file, SED_file=sed_file, SED_normalizing_catalog_column=None,
+        gr_f322w2 = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
                             final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
                             extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
                             orders=["+1", "+2"])
@@ -743,11 +749,11 @@ class grismWrapper(object):
         # NOTE: This cell will take a while (> ~30 min) to run 
         gr_f322w2.create()
         
-    def do_all():
+    def do_all(self):
         self.prep_sources()
-        self.prep_background()
+        self.prep_backgrounds()
         self.create_yaml()
-        self.create()
+        self.create_sim()
 # <a id="accompanying_imaging_data"></a>
 # ### Accompanying Imaging TSO Data
 
