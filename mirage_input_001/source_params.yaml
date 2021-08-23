@@ -1,0 +1,19 @@
+descrip: Example parameters for simple input
+stellar:
+    teff: 4400 ##K
+    metallicity: 0.0 ## [Fe/H]
+    logg: 4.5 ## log(g)
+    kmag: 8.0 ## vega mag
+planet:
+    t0: 4384. ## transit center, seconds
+    per: 0.813473978 * 24. * 3600. ## seconds
+    rp: 0.1588  ## rp/r*
+    a: 4.97 ## a/r*
+    inc: 82.109 ## inclination
+    ecc: 0.  ## eccentricity
+    w: 90. ## longitude of periastron
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.3, 0.1, 0.1, -0.1] ## limb darkening parameters
+    eclipse_file: 
+obs:
+    dur: 8800. ## duration to calculate interpolating function for exposure, seconds
