@@ -10,7 +10,7 @@ system:
     f444w_mag: 17.0
     f322w2_mag: 17.0
 planet:
-    t0: 4384. ## transit center, seconds
+    t0: 10. ## transit center, seconds. Moved because the time series is so short
     per: 70284.1516992 ## seconds
     rp: 0.1588  ## rp/r*
     a: 4.97 ## a/r*
