@@ -289,7 +289,7 @@ class grismWrapper(object):
         params.w = self.sys_params['planet']['w']                        # longitude of periastron (in degrees) 
         params.limb_dark = self.sys_params['planet']['limb_model']        # limb darkening model 
         params.u = self.sys_params['planet']['ld_u']      # limb darkening coefficients [u1, u2, u3, u4] 
-        
+
         
         # In[66]:
         
@@ -781,6 +781,13 @@ class grismWrapper(object):
         self.prep_backgrounds()
         self.create_yaml()
         self.create_sim()
+
+
+if __name__ == "__main__":
+    gW = grismWrapper()
+    gW.do_all()
+    
+
 # <a id="accompanying_imaging_data"></a>
 # ### Accompanying Imaging TSO Data
 
