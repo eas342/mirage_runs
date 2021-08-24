@@ -88,7 +88,7 @@ from mirage.imaging_simulator import ImgSim
 from mirage.seed_image.catalog_seed_image import Catalog_seed
 from mirage.utils.utils import ensure_dir_exists
 from mirage.yaml import yaml_generator
-
+from mirage.apt.read_apt_xml import ReadAPTXML
 
 # Define paths to help organize inputs and outputs
 
@@ -170,9 +170,15 @@ class grismWrapper(object):
         with open(self.sys_param_path) as sys_f:
             self.sys_params = yaml.safe_load(sys_f)
     
-    
+
+
     
     def prep_sources(self):
+        ## also get program ID
+        xml_info = ReadAPTXML()
+        self.xml_dict = xml_info.read_xml(self.xml_file)
+        self.propIDs = self.xml_dict['ProposalID']
+        self.targIDs = self.xml_dict['TargetID']
         
         t_eff = self.sys_params['stellar']['teff']  # surface temperature
         metallicity = self.sys_params['stellar']['metallicity']
@@ -591,7 +597,53 @@ class grismWrapper(object):
 
         self.bkgd_cat_file = bkgd_cat_file
         
+    def get_mirage_yaml_path(self,obsnum=1,visnum=1,visgroup=1,activitynum=1,
+                             expnum=2):
+        """
+        Get the yaml path for an exposure
 
+        Parameters
+        ----------
+        obsnum: int
+             observation number
+        expnum: int
+             exposure number. 1 is usually TA whereas 2 is the science
+        """
+        
+        nameString = "jw{:05d}{:03d}{:03d}_{:02d}1{:02d}_{:05d}_nrca5.yaml".format(int(self.propIDs[0]),obsnum,visnum,visgroup,activitynum,expnum)
+        
+        full_yaml_path = os.path.join(self.output_yaml_dir,nameString)
+        return full_yaml_path
+
+    def tweak_obs_time_yaml(self,yaml_path):
+        """
+        Tweak the observation date and time to work with a given ephemeris
+        This tweaks the yaml file. Uses dates in the system parameters
+
+        Parameters
+        ----------
+        yaml_path: str
+            Path to the yaml file to modify
+        """
+        paramDict = yaml.safe_load(open(yaml_path))
+        
+
+        
+        # In[112]:
+        
+        
+        paramDict['Output']['date_obs'] = self.sys_params['obs']['date_obs']
+        paramDict['Output']['time_obs'] = self.sys_params['obs']['time_obs']
+        
+        
+        # In[116]:
+        
+        
+        #tmpSaveDir = os.path.join(output_yaml_dir,'test_yaml.yaml')
+        yaml.safe_dump(paramDict,open(yaml_path,'w'),default_flow_style=False)
+
+        
+        
     def create_yaml(self):
         # <a id="yaml_files"></a>
         # ### Create input yaml files for Mirage
@@ -603,10 +655,10 @@ class grismWrapper(object):
         # In[97]:
         
         
-        catalogs = {'WASP-43': {'point_source': self.bkgd_cat_file,
-                                'tso_imaging_catalog': self.imaging_tso_catalog,
-                                'tso_grism_catalog': self.grism_tso_catalog,
-                                }
+        catalogs = {self.targIDs[0]: {'point_source': self.bkgd_cat_file,
+                                     'tso_imaging_catalog': self.imaging_tso_catalog,
+                                     'tso_grism_catalog': self.grism_tso_catalog,
+                                     }
                    }
         
         
@@ -646,39 +698,15 @@ class grismWrapper(object):
         
         
         yam.yaml_files
-        
-        
-        # # NOTE: I manually edited the date in the YAML file to
-        # ```
-        # date_obs: '2022-04-25'  # Date of observation
-        # time_obs: '02:50:06.00'  # Time of observation
-        # ```
-        
-        # In[106]:
-        
+                
         
         print("Saving output to {}".format(self.output_yaml_dir))
         
         
         # In[111]:
-    def create(self):
         
-        orig_A5yaml_path = os.path.join(self.output_yaml_dir,'jw00042001001_01101_00001_nrca5.yaml')
-        paramDict = yaml.safe_load(open(orig_A5yaml_path))
-        
-        
-        # In[112]:
-        
-        
-        paramDict['Output']['date_obs'] = self.sys_params['obs']['date_obs']
-        paramDict['Output']['time_obs'] = self.sys_params['obs']['time_obs']
-        
-        
-        # In[116]:
-        
-        
-        #tmpSaveDir = os.path.join(output_yaml_dir,'test_yaml.yaml')
-        yaml.safe_dump(paramDict,open(orig_A5yaml_path,'w'),default_flow_style=False)
+        orig_yaml_path = self.get_mirage_yaml_path()
+        self.tweak_obs_time_yaml(orig_yaml_path)
         
         
         # Create a table showing details of what exposure each yaml file describes
@@ -711,9 +739,30 @@ class grismWrapper(object):
         
         # In[118]:
         
+        info_tab.write(os.path.join(self.output_yaml_dir,'yaml_info_tab.csv'),overwrite=True)
         
-        yaml.safe_dump(info_tab,open(os.path.join(self.output_dat_dir,'info_tab.yaml'),'w'),
-                       default_flow_style=False)
+        self.yaml_info_tab = info_tab
+        
+        
+                
+
+    def create_sim(self,obsnum=1,visnum=1):
+        """
+        Create the simulate Mirage data (after all Yaml setup is done)
+        """
+        gr_tso_yaml_file = self.get_mirage_yaml_path(obsnum=obsnum,visnum=visnum)
+
+        pts = self.yaml_info_tab['Filename'] == os.path.basename(gr_tso_yaml_file)
+        if np.sum(pts) != 1:
+            raise Exception("Found {} results in the yaml info table".format(np.sum(pts)))
+        else:
+            print("Making simulation for:")
+            print(self.yaml_info_tab[pts])
+        
+        gr_tso  = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
+                          final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
+                          extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
+                          orders=["+1", "+2"])
         
         
         # <a id="create_simulated_data"></a>
@@ -724,30 +773,8 @@ class grismWrapper(object):
         # <a id="grism_data"></a>
         # ### Grism TSO Data
         
-        # First let's simulate a grism time series exposure using the F322W2 filter. 
-        
-        # In[119]:
-        
-        
-                
-
-    def create_sim(self):
-        """
-        Create the simulate Mirage data (after all Yaml setup is done)
-        """
-        gr_tso_yaml_file = os.path.join(self.output_yaml_dir, 'jw00042001001_01101_00002_nrca5.yaml')
-        
-        gr_f322w2 = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
-                            final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
-                            extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
-                            orders=["+1", "+2"])
-        
-        
-        # In[ ]:
-        
-        
         # NOTE: This cell will take a while (> ~30 min) to run 
-        gr_f322w2.create()
+        gr_tso.create()
         
     def do_all(self):
         self.prep_sources()
