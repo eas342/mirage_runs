@@ -4,11 +4,11 @@ stellar:
     metallicity: 0.0 ## [Fe/H]
     logg: 4.5 ## log(g)
 system:
-    kmag: 17.0 ## vega mag
-    ra: 154.9081666 ## deg
-    dec: -9.806444444 ## deg
-    f444w_mag: 17.0
-    f322w2_mag: 17.0
+    kmag: 9.0 ## vega mag
+    ra: 66.37090 ## deg
+    dec: -30.60045 ## deg
+    f444w_mag: 9.0
+    f322w2_mag: 9.0
 planet:
     t0: 10. ## transit center, seconds. Moved because the time series is so short
     per: 70284.1516992 ## seconds
@@ -19,7 +19,7 @@ planet:
     w: 90. ## longitude of periastron
     limb_model: "nonlinear" ## type of limb darkening model
     ld_u: [0.3, 0.1, 0.1, -0.1] ## limb darkening parameters
-    spec_file: 'input_015_ers_new_trans_spec/binned_WASP43b_model_transmission_02.csv'
+    spec_file: 'mirage_input_001/trans_spec_flat.csv'
 background:
     level: 'medium' ## background level
     bkgd_sources_ra: [154.901589]
