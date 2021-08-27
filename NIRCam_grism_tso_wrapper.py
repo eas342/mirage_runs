@@ -620,6 +620,7 @@ class grismWrapper(object):
         
         preamble = self.get_jwst_name_str(obsnum=obsnum,visnum=visnum,visgroup=visgroup,
                                           activitynum=activitynum,expnum=expnum)
+        
         nameString = "{}_nrca5.yaml".format(preamble)
         
         full_yaml_path = os.path.join(self.output_yaml_dir,nameString)
