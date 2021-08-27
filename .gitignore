@@ -3,3 +3,5 @@
 test_output/
 mirage_output_001*
 __pycache__/
+mirage_input_001/mirage_logs/
+mirage_input_001/yaml_files/
