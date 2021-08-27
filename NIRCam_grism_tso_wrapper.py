@@ -596,6 +596,14 @@ class grismWrapper(object):
         bkgd_cat.save(bkgd_cat_file)
 
         self.bkgd_cat_file = bkgd_cat_file
+
+    def get_jwst_name_str(self,obsnum=1,visnum=1,visgroup=1,activitynum=1,
+                             expnum=2):
+        """
+        Get the JWST file name for an exposure
+        """
+        nameString = "jw{:05d}{:03d}{:03d}_{:02d}1{:02d}_{:05d}".format(int(self.propIDs[0]),obsnum,visnum,visgroup,activitynum,expnum)
+        return nameString
         
     def get_mirage_yaml_path(self,obsnum=1,visnum=1,visgroup=1,activitynum=1,
                              expnum=2):
@@ -610,7 +618,9 @@ class grismWrapper(object):
              exposure number. 1 is usually TA whereas 2 is the science
         """
         
-        nameString = "jw{:05d}{:03d}{:03d}_{:02d}1{:02d}_{:05d}_nrca5.yaml".format(int(self.propIDs[0]),obsnum,visnum,visgroup,activitynum,expnum)
+        preamble = self.get_jwst_name_str(obsnum=obsnum,visnum=visnum,visgroup=visgroup,
+                                          activitynum=activitynum,expnum=expnum)
+        nameString = "{}_nrca5.yaml".format(preamble)
         
         full_yaml_path = os.path.join(self.output_yaml_dir,nameString)
         return full_yaml_path
@@ -776,12 +786,35 @@ class grismWrapper(object):
         # NOTE: This cell will take a while (> ~30 min) to run 
         gr_tso.create()
         
+    def clean_up(self):
+        """
+        Clean up the extra files made by mirage
+        """
+        cleanupFiles = ['dummy_ptsrc.cat',
+                        'dummy_ptsrc_with_flambda.cat',
+                        'hardcopy.2',
+                        'mirage_latest.log',
+                        'source_sed_file_from_dummy_ptsrc_and_test_grism_tso_sed_file_wasp43.hdf5']
+        nameString = self.get_jwst_name_str()
+        backgImage = '{}_nrca5_uncal_background_image.fits'.format(nameString)
+        
+        cleanupFiles.append(backgImage)
+
+        dest = os.path.join(self.output_dir,'extra_files')
+        if os.path.exists(dest) == False:
+            os.mkdir(dest)
+        for oneFile in cleanupFiles:
+            if os.path.exists(oneFile):
+                move_to_path = os.path.join(dest,oneFile)
+                os.rename(oneFile,move_to_path)
+                        
+        
     def do_all(self):
         self.prep_sources()
         self.prep_backgrounds()
         self.create_yaml()
         self.create_sim()
-
+        self.clean_up()
 
 if __name__ == "__main__":
     gW = grismWrapper()
