@@ -67,6 +67,7 @@ from astropy.table import Table
 from astropy.visualization import simple_norm, imshow_norm
 from astropy import units as u
 from astropy.io import fits, ascii
+from astropy.coordinates import SkyCoord
 import batman
 import h5py
 import numpy as np
@@ -670,8 +671,17 @@ class grismWrapper(object):
         
         pxOffset = 58.-34. ## pixels
         arcsecOffset = pxOffset * 0.063 ## LW pixels
-        degOffset = arcsecOffset /3600.
-        paramDict['Telescope']['dec'] = oldDec - degOffset
+        oldRA = paramDict['Telescope']['ra']
+        oldDec = paramDict['Telescope']['dec']
+
+        old_coord = SkyCoord(oldRA * u.deg,oldDec * u.deg)
+        pav3 = self.sys_params['obs']['pav3']
+        newCoord = old_coord.directional_offset_by(pav3,arcsecOffset * u.arcsec)
+
+        paramDict['Telescope']['ra'] = float(np.round(newCoord.ra.deg,6))
+        paramDict['Telescope']['dec'] = float(np.round(newCoord.dec.deg,6))
+        #degOffset = arcsecOffset /3600.
+        #paramDict['Telescope']['dec'] = oldDec + degOffset
         
         # In[116]:
         
