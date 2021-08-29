@@ -653,7 +653,7 @@ class grismWrapper(object):
         #tmpSaveDir = os.path.join(output_yaml_dir,'test_yaml.yaml')
         yaml.safe_dump(paramDict,open(yaml_path,'w'),default_flow_style=False)
     
-    def tweak_target_pos_in_yaml(self,yaml_path):
+    def tweak_tel_pos_in_yaml(self,yaml_path):
         """
         Tweak the telescope pointing to put the source at Y=34 where it will be for Grism time series
         This is an attempted fudge to give the right position that I put in manually.
@@ -747,7 +747,7 @@ class grismWrapper(object):
         ## tweak the observation time to get transit center correct
         self.tweak_obs_time_yaml(orig_yaml_path)
         ## tweak the position to get it where we want it
-        self.tweak_target_pos_in_yaml(orig_yaml_path)
+        self.tweak_tel_pos_in_yaml(orig_yaml_path)
         
         # Create a table showing details of what exposure each yaml file describes
         
