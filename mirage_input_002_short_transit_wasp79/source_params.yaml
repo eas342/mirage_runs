@@ -1,0 +1,37 @@
+descrip: Example parameters for simple input
+stellar:
+    teff: 6600 ## Stassun et al. 2017, WASP-179
+    metallicity: 0.0 ## Stassun et al. 2017
+    logg: 4.2 ## log g, Stassun et al. 2017
+system:
+    kmag: 6.60 ## vega mag, made extra bright for higher SNR sim
+    ra: 66.370916666 ## deg, WASP-79
+    dec: -30.60045 ## deg, WASP-79
+    f444w_mag: 6.60
+    f322w2_mag: 6.60
+planet:
+    t0: 190. ## transit center, seconds. Moved because the time series is so short
+    per: 2000. ## seconds, made super short for this short sim
+    rp: 0.10  ## rp/r*, arbitrary choice
+    a: 5.0 ## a/r*, arbitrary choice
+    inc: 89.5 ## inclination
+    ecc: 0.  ## eccentricity
+    w: 90. ## longitude of periastron
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.1, 0.1, 0.1, -0.05] ## limb darkening parameters
+    spec_file: 'mirage_input_001/trans_spec_flat.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [154.901589]
+    bkgd_sources_dec: [-30.5994] ## putting a source offset in Dec
+    bkgd_sources_f444w_mag: [8.5]
+    bkgd_sources_f322w2_mag: [8.5]
+    bkgd_sources_f182m_mag: [8.5]
+    bkgd_sources_f210m_mag: [8.5]
+    bkgd_sources_f470n_mag: [8.5]
+obs:
+    dur: 400. ## duration to calculate interpolating function for exposure, seconds
+    dates: '2022-11-01' ## date
+    pav3: 0.0 ## position angle
+    date_obs: '2022-11-01'
+    time_obs: '02:50:06.000'
