@@ -31,7 +31,10 @@ background:
     bkgd_sources_f470n_mag: [20.3]
 obs:
     dur: 100. ## duration to calculate interpolating function for exposure, seconds
-    dates: '2022-11-01' ## date
     pav3: 0.0 ## position angle
     date_obs: '2022-11-01'
     time_obs: '02:50:06.000'
+dataPaths:
+    inputDir: 'mirage_input_001'
+    outputDir: 'mirage_output_001'
+    xmlFile: 'wasp-79_minimal_example.xml'

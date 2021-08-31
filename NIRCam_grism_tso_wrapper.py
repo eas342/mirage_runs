@@ -91,6 +91,8 @@ from mirage.utils.utils import ensure_dir_exists
 from mirage.yaml import yaml_generator
 from mirage.apt.read_apt_xml import ReadAPTXML
 
+import sys
+
 # Define paths to help organize inputs and outputs
 
 # In[4]:
@@ -124,26 +126,29 @@ def show(array, title, min=0, max=1000):
 class grismWrapper(object):
 # In[5]:
 
-    def __init__(self,input_data_path = 'mirage_input_001/',
-                 output_dir = 'mirage_output_001',
-                 xml_file="wasp-79_minimal_example.xml",
-                 source_params="source_params.yaml"):
+    def __init__(self,source_params="source_params.yaml"):
         """
         A wrapper for running NIRCam grism TSO simulations w/ MIRAGE
         
-        input_data_path: str
-            Directory for input data: XML, source parameters. This
-            is also where Mirage will dump yaml files
-        output_data_dir: str
-            Directory for output data
-        xml_file: str
-            Name of the XML file made by APT. Put that and .pointings in the input path
         source_params: str
-            The parameters of the system with the exoplanet
+            The parameters of the system with the exoplanet and the run in general.
+            See the README for a detailed description of the inputs.
         """
+        
+        input_data_path = 'mirage_input_001/',
+                         output_dir = 'mirage_output_001',
+                         xml_file="wasp-79_minimal_example.xml",
+                         
+        
+        self.sys_param_path = source_params
+        with open(self.sys_param_path) as sys_f:
+            self.sys_params = yaml.safe_load(sys_f)
+        
+        
         # In[7]:
-        self.input_data_path = input_data_path
-        self.output_dir = output_dir
+        self.input_data_path = self.sys_params['dataPaths']['inputDir']
+        self.output_dir = self.sys_params['dataPaths']['outputDir']
+        
         self.output_data_dir = os.path.abspath(os.path.join(output_dir,'sim_data'))
         print("output data dir: {}".format(self.output_data_dir))
 
@@ -167,9 +172,7 @@ class grismWrapper(object):
         
         # In[13]:
         
-        self.sys_param_path = os.path.join(self.input_data_path,source_params)
-        with open(self.sys_param_path) as sys_f:
-            self.sys_params = yaml.safe_load(sys_f)
+
     
 
 
@@ -721,7 +724,7 @@ class grismWrapper(object):
         
         
         pav3 = self.sys_params['obs']['pav3']
-        dates = self.sys_params['obs']['dates']
+        dates = self.sys_params['obs']['date_obs']
         
         
         # In[100]:
@@ -857,6 +860,11 @@ class grismWrapper(object):
         self.clean_up()
 
 if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        source_params="source_params.yaml"
+    else:
+        source_params=sys.argv[1]
+    
     gW = grismWrapper()
     gW.do_all()
     

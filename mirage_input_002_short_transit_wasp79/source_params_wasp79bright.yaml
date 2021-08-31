@@ -1,4 +1,4 @@
-descrip: Example parameters for simple input
+descrip: Example parameters for short transit
 stellar:
     teff: 6600 ## Stassun et al. 2017, WASP-79
     metallicity: 0.0 ## Stassun et al. 2017
@@ -31,7 +31,10 @@ background:
     bkgd_sources_f470n_mag: [8.5]
 obs:
     dur: 400. ## duration to calculate interpolating function for exposure, seconds
-    dates: '2022-11-01' ## date
     pav3: 0.0 ## position angle
     date_obs: '2022-11-01'
     time_obs: '02:50:06.000'
+dataPaths:
+    inputDir: 'mirage_input_002_short_transit_wasp79'
+    outputDir: 'mirage_output_002_short_transit_wasp79'
+    xmlFile: 'wasp-79brighter_short_transit.xml'
