@@ -1,6 +1,6 @@
 descrip: Example parameters for simple input
 stellar:
-    teff: 6600 ## Stassun et al. 2017, WASP-179
+    teff: 6600 ## Stassun et al. 2017, WASP-79
     metallicity: 0.0 ## Stassun et al. 2017
     logg: 4.2 ## log g, Stassun et al. 2017
 system:
@@ -22,7 +22,7 @@ planet:
     spec_file: 'mirage_input_001/trans_spec_flat.csv'
 background:
     level: 'medium' ## background level
-    bkgd_sources_ra: [154.901589]
+    bkgd_sources_ra: [66.370916666]
     bkgd_sources_dec: [-30.5994] ## putting a source offset in Dec
     bkgd_sources_f444w_mag: [8.5]
     bkgd_sources_f322w2_mag: [8.5]
