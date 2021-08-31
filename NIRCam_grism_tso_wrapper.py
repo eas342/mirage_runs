@@ -126,7 +126,7 @@ def show(array, title, min=0, max=1000):
 class grismWrapper(object):
 # In[5]:
 
-    def __init__(self,source_params="source_params.yaml"):
+    def __init__(self,source_params="mirage_input_001/source_params.yaml"):
         """
         A wrapper for running NIRCam grism TSO simulations w/ MIRAGE
         
@@ -135,10 +135,6 @@ class grismWrapper(object):
             See the README for a detailed description of the inputs.
         """
         
-        input_data_path = 'mirage_input_001/',
-                         output_dir = 'mirage_output_001',
-                         xml_file="wasp-79_minimal_example.xml",
-                         
         
         self.sys_param_path = source_params
         with open(self.sys_param_path) as sys_f:
@@ -148,19 +144,20 @@ class grismWrapper(object):
         # In[7]:
         self.input_data_path = self.sys_params['dataPaths']['inputDir']
         self.output_dir = self.sys_params['dataPaths']['outputDir']
-        
-        self.output_data_dir = os.path.abspath(os.path.join(output_dir,'sim_data'))
+
+        output_data_dir = os.path.join(self.output_dir,'sim_data')
+        self.output_data_dir = os.path.abspath(output_data_dir)
         print("output data dir: {}".format(self.output_data_dir))
 
         # The yaml files that will serve as the inputs to Mirage will be saved in this directory
-        self.output_yaml_dir = os.path.abspath(os.path.join(input_data_path,'yaml_files'))
+        self.output_yaml_dir = os.path.abspath(os.path.join(self.input_data_path,'yaml_files'))
         print("output yaml: {}".format(self.output_yaml_dir))
         
         dirList = [self.input_data_path,self.output_data_dir,self.output_yaml_dir]
         for oneDir in dirList:
             ensure_dir_exists(oneDir)
         
-        self.xml_file = os.path.join(input_data_path, xml_file)
+        self.xml_file = os.path.join(self.input_data_path, self.sys_params['dataPaths']['xmlFile'])
         
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
@@ -861,11 +858,11 @@ class grismWrapper(object):
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
-        source_params="source_params.yaml"
+        source_params="mirage_input_001/source_params.yaml"
     else:
         source_params=sys.argv[1]
     
-    gW = grismWrapper()
+    gW = grismWrapper(source_params=source_params)
     gW.do_all()
     
 
