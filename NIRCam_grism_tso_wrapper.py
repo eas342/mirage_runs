@@ -730,6 +730,11 @@ class grismWrapper(object):
         
         # In[100]:
         
+        ## Set the segmentation map to include just the core of the PSF
+        ## This saves LOTS of compute time but loses the extreme wings of the PSF.
+        kmag = self.sys_params['system']['kmag']
+        ## Scaled from a segmap that looked good for a K=9 source
+        segmap_flux_limit = 50. * 10**(-0.4 * (kmag-9.0))## ADU/sec
         
         yam = yaml_generator.SimInput(self.xml_file, self.pointing_file, catalogs=catalogs, verbose=True,
                                       output_dir=self.output_yaml_dir, simdata_output_dir=self.output_data_dir,
