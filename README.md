@@ -132,15 +132,15 @@ This describes both the zodiacal background as well as any other neighboring sta
 ### obs
 Describes the observations.
 
-`dur`: Duration of the exposure used to calculate interpolating functions.
+`dur`: (float) Duration of the exposure used to calculate interpolating functions.
 
-`pav3`: The position angle of the V3 axis at observation in degrees. This is important when there are neighboring stars that could contaminate the spectrum of the target.
+`pav3`: (float) The position angle of the V3 axis at observation in degrees. This is important when there are neighboring stars that could contaminate the spectrum of the target.
 
-`date_obs`: The exact date of the exposure start. For example `"2022-11-01"`.
+`date_obs`: (string) The exact date of the exposure start. For example, `"2022-11-01"`.
 
-`time_obs`: The exact time of the exposure start. `"02:50:06.000"`. Note that the transit center will happen at this time plus the value above under `planet: t0`.
+`time_obs`: (string) The exact time of the exposure start. For example, `"02:50:06.000"`. Note that the transit center will happen at this time plus the value above under `planet: t0`.
 
-`obsnum`: The observation number from the APT file. If "null" in the yaml file (`None` in Python), it will use the first one available.
+`obsnum`: (list of ints) The observation numbers from the APT file. If "null" in the yaml file (`None` in Python), it will use the first one available. For example, `[1]`.
 
 ### dataPaths
 These say where to grab input data and where the outputs are.
