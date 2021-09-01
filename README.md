@@ -134,13 +134,13 @@ Describes the observations.
 
 `dur`: Duration of the exposure used to calculate interpolating functions.
 
-`dates`: Observation date. The approximate date of observation that should be visible in the APT visit planner. This is used for zodiacal background and mirage also tests if it is visible at this date. For example, `"2022-11-01"`.
-
 `pav3`: The position angle of the V3 axis at observation in degrees. This is important when there are neighboring stars that could contaminate the spectrum of the target.
 
 `date_obs`: The exact date of the exposure start. For example `"2022-11-01"`.
 
 `time_obs`: The exact time of the exposure start. `"02:50:06.000"`. Note that the transit center will happen at this time plus the value above under `planet: t0`.
+
+`obsnum`: The observation number from the APT file. If "null" in the yaml file (`None` in Python), it will use the first one available.
 
 ### dataPaths
 These say where to grab input data and where the outputs are.

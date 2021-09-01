@@ -161,6 +161,10 @@ class grismWrapper(object):
         
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
+        if "obsnum" in self.sys_params['obs'].keys():
+            self.obsnum == self.sys_params['obs']['obsnum']
+        else:
+            self.obsnum == None
         
         # <a id="stellar_spectrum"></a>
         # ### Stellar spectrum
@@ -752,12 +756,6 @@ class grismWrapper(object):
         
         # In[111]:
         
-        orig_yaml_path = self.get_mirage_yaml_path()
-        
-        ## tweak the observation time to get transit center correct
-        self.tweak_obs_time_yaml(orig_yaml_path)
-        ## tweak the position to get it where we want it
-        self.tweak_tel_pos_in_yaml(orig_yaml_path)
         
         # Create a table showing details of what exposure each yaml file describes
         
@@ -793,15 +791,30 @@ class grismWrapper(object):
         
         self.yaml_info_tab = info_tab
         
+        ## Tweak the YAMLs files so that the start times occur exactly when you want
+        ## and the telescope position is where we want it
         
-                
+        for oneYaml in info_tab:
+            orig_yaml_path = os.path.join(self.output_yaml_dir,oneYaml['Filename'])
+            if oneYaml['Mode'] in ['ts_imaging','ts_grism']:
+                ## tweak the observation time to get transit center correct
+                self.tweak_obs_time_yaml(orig_yaml_path)
+            
+            if oneYaml['Mode'] == 'ts_grism':
+                ## tweak the position to get it where we want it
+                self.tweak_tel_pos_in_yaml(orig_yaml_path)
+            
+            
 
-    def create_sim(self,obsnum=1,visnum=1):
+    def create_sim(self,visnum=1):
         """
         Create the simulate Mirage data (after all Yaml setup is done)
         """
+        if self.obsnum is None:
+            obsnum = int(self.xml_dict['ObservationID'][0])
+        
         gr_tso_yaml_file = self.get_mirage_yaml_path(obsnum=obsnum,visnum=visnum)
-
+        
         pts = self.yaml_info_tab['Filename'] == os.path.basename(gr_tso_yaml_file)
         if np.sum(pts) != 1:
             raise Exception("Found {} results in the yaml info table".format(np.sum(pts)))
