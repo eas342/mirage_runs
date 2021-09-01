@@ -162,9 +162,9 @@ class grismWrapper(object):
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
         if "obsnum" in self.sys_params['obs'].keys():
-            self.obsnum == self.sys_params['obs']['obsnum']
+            self.obsnum = self.sys_params['obs']['obsnum']
         else:
-            self.obsnum == None
+            self.obsnum = None
         
         # <a id="stellar_spectrum"></a>
         # ### Stellar spectrum
