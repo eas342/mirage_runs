@@ -741,7 +741,7 @@ class grismWrapper(object):
                                       background=background, roll_angle=pav3,
                                       dates=dates, datatype='linear, raw', dateobs_for_background=True,
                                       reffile_defaults='crds',
-                                      segmap_flux_limit = 50,
+                                      segmap_flux_limit = segmap_flux_limit,
                                       segmap_flux_limit_units = 'ADU/sec')
         
         yam.use_linearized_darks = True
