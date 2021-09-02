@@ -1,0 +1,40 @@
+descrip: Example parameters for simple input
+stellar:
+    teff: 4400 ##K
+    metallicity: 0.0 ## [Fe/H]
+    logg: 4.5 ## log(g)
+system:
+    kmag: 9.0 ## vega mag
+    ra: 66.37090 ## deg
+    dec: -30.60045 ## deg
+    f444w_mag: 9.0
+    f322w2_mag: 9.0
+planet:
+    t0: 10. ## transit center, seconds. Moved because the time series is so short
+    per: 70284.1516992 ## seconds
+    rp: 0.1588  ## rp/r*
+    a: 4.97 ## a/r*
+    inc: 82.109 ## inclination
+    ecc: 0.  ## eccentricity
+    w: 90. ## longitude of periastron
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.3, 0.1, 0.1, -0.1] ## limb darkening parameters
+    spec_file: 'mirage_input_001/trans_spec_flat.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [154.901589]
+    bkgd_sources_dec: [-09.81150]
+    bkgd_sources_f444w_mag: [20.3]
+    bkgd_sources_f322w2_mag: [20.3]
+    bkgd_sources_f182m_mag: [20.6]
+    bkgd_sources_f210m_mag: [20.3]
+    bkgd_sources_f470n_mag: [20.3]
+obs:
+    dur: 100. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 0.0 ## position angle
+    date_obs: '2022-11-01'
+    time_obs: '02:50:06.000'
+dataPaths:
+    inputDir: 'mirage_input_003_check_subgrism64'
+    outputDir: 'mirage_input_003_check_subgrism64'
+    xmlFile: 'checkSubgrism64.xml'
