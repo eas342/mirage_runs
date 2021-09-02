@@ -36,5 +36,5 @@ obs:
     time_obs: '02:50:06.000'
 dataPaths:
     inputDir: 'mirage_input_003_check_subgrism64'
-    outputDir: 'mirage_input_003_check_subgrism64'
+    outputDir: 'mirage_output_003_check_subgrism64'
     xmlFile: 'checkSubgrism64.xml'
