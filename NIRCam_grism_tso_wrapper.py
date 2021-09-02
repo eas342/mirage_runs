@@ -161,10 +161,6 @@ class grismWrapper(object):
         
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
-        if "obsnum" in self.sys_params['obs'].keys():
-            self.obsnum = self.sys_params['obs']['obsnum']
-        else:
-            self.obsnum = None
         
         # <a id="stellar_spectrum"></a>
         # ### Stellar spectrum
@@ -184,6 +180,19 @@ class grismWrapper(object):
         self.xml_dict = xml_info.read_xml(self.xml_file)
         self.propIDs = self.xml_dict['ProposalID']
         self.targIDs = self.xml_dict['TargetID']
+        
+        ## Check if obsnum is specified
+        if "obsnum" in self.sys_params['obs'].keys():
+            use_obsnum = self.sys_params['obs']['obsnum']
+        else:
+            ## If not, set to None
+            use_obsnum = None
+        
+        if use_obsnum is None:
+            ## if not given a specific number, look at first one
+            self.obsnum = int(self.xml_dict['ObservationID'][0])
+        else:
+            self.obsnum = use_obsnum
         
         t_eff = self.sys_params['stellar']['teff']  # surface temperature
         metallicity = self.sys_params['stellar']['metallicity']
@@ -815,10 +824,7 @@ class grismWrapper(object):
         """
         Create the simulate Mirage data (after all Yaml setup is done)
         """
-        if self.obsnum is None:
-            obsnum = int(self.xml_dict['ObservationID'][0])
-        
-        gr_tso_yaml_file = self.get_mirage_yaml_path(obsnum=obsnum,visnum=visnum)
+        gr_tso_yaml_file = self.get_mirage_yaml_path(obsnum=self.obsnum,visnum=visnum)
         
         pts = self.yaml_info_tab['Filename'] == os.path.basename(gr_tso_yaml_file)
         if np.sum(pts) != 1:
@@ -853,11 +859,11 @@ class grismWrapper(object):
                         'hardcopy.2',
                         'mirage_latest.log',
                         'source_sed_file_from_dummy_ptsrc_and_test_grism_tso_sed_file_wasp43.hdf5']
-        nameString = self.get_jwst_name_str()
+        nameString = self.get_jwst_name_str(obsnum=self.obsnum)
         backgImage = '{}_nrca5_uncal_background_image.fits'.format(nameString)
         
         cleanupFiles.append(backgImage)
-
+        
         dest = os.path.join(self.output_dir,'extra_files')
         if os.path.exists(dest) == False:
             os.mkdir(dest)
