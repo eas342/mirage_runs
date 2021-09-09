@@ -161,7 +161,8 @@ class grismWrapper(object):
         
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
-        
+        self.do_grism = False
+        self.do_sw = True
         # <a id="stellar_spectrum"></a>
         # ### Stellar spectrum
         
@@ -620,7 +621,7 @@ class grismWrapper(object):
         return nameString
         
     def get_mirage_yaml_path(self,obsnum=1,visnum=1,visgroup=1,activitynum=1,
-                             expnum=2):
+                             expnum=2,detector='nrca5'):
         """
         Get the yaml path for an exposure
 
@@ -635,7 +636,7 @@ class grismWrapper(object):
         preamble = self.get_jwst_name_str(obsnum=obsnum,visnum=visnum,visgroup=visgroup,
                                           activitynum=activitynum,expnum=expnum)
         
-        nameString = "{}_nrca5.yaml".format(preamble)
+        nameString = "{}_{}.yaml".format(preamble,detector)
         
         full_yaml_path = os.path.join(self.output_yaml_dir,nameString)
         return full_yaml_path
@@ -818,37 +819,53 @@ class grismWrapper(object):
                 ## tweak the position to get it where we want it
                 self.tweak_tel_pos_in_yaml(orig_yaml_path)
             
-            
+    def check_if_yaml_is_in_table(self,yaml_name):
+        """
+        Check if the yaml file is in the table
+        """
+        pts = self.yaml_info_tab['Filename'] == os.path.basename(yaml_name)
+        if np.sum(pts) != 1:
+            raise Exception("Found {} results in the yaml info table".format(np.sum(pts)))
+        else:
+            print("Making simulation for:")
+            print(self.yaml_info_tab[pts])
 
     def create_sim(self,visnum=1):
         """
         Create the simulate Mirage data (after all Yaml setup is done)
         """
         gr_tso_yaml_file = self.get_mirage_yaml_path(obsnum=self.obsnum,visnum=visnum)
+
         
-        pts = self.yaml_info_tab['Filename'] == os.path.basename(gr_tso_yaml_file)
-        if np.sum(pts) != 1:
-            raise Exception("Found {} results in the yaml info table".format(np.sum(pts)))
-        else:
-            print("Making simulation for:")
-            print(self.yaml_info_tab[pts])
-        
-        gr_tso  = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
-                          final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
-                          extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
-                          orders=["+1", "+2"])
-        
-        
-        # <a id="create_simulated_data"></a>
-        # ## Create Simulated Data
-        
-        # Simulate data from some of the files above.
-        
-        # <a id="grism_data"></a>
-        # ### Grism TSO Data
-        
-        # NOTE: This cell will take a while (> ~30 min) to run 
-        gr_tso.create()
+        if self.do_grism == True:
+            self.check_if_yaml_is_in_table(gr_tso_yaml_file)
+            
+            gr_tso  = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
+                              final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
+                              extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
+                              orders=["+1", "+2"])
+            # ### Grism TSO Data
+            
+            # NOTE: This line will take a long time to run!
+            gr_tso.create()
+
+        if self.do_sw == True:
+            ## Accompanying short wavelength channel imaging
+            ## only do the side that has a source
+            with open(gr_tso_yaml_file,'r') as gyf:
+                grYamlDict = yaml.safe_load(gyf)
+            if grYamlDict['Readout']['filter'] == 'F444W':
+                sw_detector = 'nrca1'
+            else:
+                sw_detector = 'nrca3'
+    
+            sw_yaml = self.get_mirage_yaml_path(obsnum=self.obsnum,visnum=visnum,expnum=1,
+                                                detector=sw_detector)
+            self.check_if_yaml_is_in_table(sw_yaml)
+            
+            img_tso = ImgSim()
+            img_tso.paramfile = sw_yaml
+            img_tso.create()
         
     def clean_up(self):
         """
