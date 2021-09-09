@@ -66,7 +66,7 @@ MarkupSafe==2.0.1
 matplotlib==3.4.3
 matplotlib-inline==0.1.2
 mimeparse==0.1.3
-mirage @ git+git://github.com/spacetelescope/mirage.git@b142521d61269acd24433b20e20d4bad1ad4e712
+mirage @ git+git://github.com/eas342/mirage.git@03dcb4d71c02c350ee189d19ff8b4a0a93acea53
 mistune==0.8.4
 nbclient==0.5.4
 nbconvert==6.1.0
