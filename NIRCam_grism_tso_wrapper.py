@@ -161,7 +161,7 @@ class grismWrapper(object):
         
         self.pointing_file = self.xml_file.replace('.xml', '.pointing')
         
-        self.do_grism = False
+        self.do_grism = True
         self.do_sw = True
         # <a id="stellar_spectrum"></a>
         # ### Stellar spectrum
