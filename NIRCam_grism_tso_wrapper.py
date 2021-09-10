@@ -506,22 +506,23 @@ class grismWrapper(object):
         # In[86]:
         
         
-        object_f182m_mag = 7.25
-        object_f210m_mag = 7.23
-        object_f470n_mag = 7.30
-        
         
         # In[87]:
         
+
+        # Add source magnitudes, assuming Raleigh Jeans limit
+        sw_filterList = ['f182m','f210m','f470n','wlp4']
+        all_mag = object_f322w2_mag
         
-        # Add source magnitudes
-        tsimg_cat.add_magnitude_column([object_f182m_mag], magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f182m')
-        tsimg_cat.add_magnitude_column([object_f210m_mag], magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f210m')
-        tsimg_cat.add_magnitude_column([object_f470n_mag], magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f470n')
-        
+        for one_filter in sw_filterList:
+            if one_filter == 'wlp4':
+                column_name = 'nircam_wlp4_magnitude'
+            else:
+                column_name = ''
+            tsimg_cat.add_magnitude_column([all_mag], magnitude_system='vegamag',
+                                           instrument='nircam', filter_name=one_filter,
+                                           column_name=column_name)
+            
         
         # In[88]:
         
@@ -603,6 +604,12 @@ class grismWrapper(object):
                                        instrument='nircam', filter_name='f210m')
         bkgd_cat.add_magnitude_column(bkgd_sources_f470n_mag, magnitude_system='vegamag',
                                        instrument='nircam', filter_name='f470n')
+
+        ## value for WLP4. Assume the same as F210M
+
+        bkgd_cat.add_magnitude_column(bkgd_sources_f210m_mag, magnitude_system='vegamag',
+                                      instrument='nircam', filter_name='wlp4',
+                                      column_name='nircam_wlp4_magnitude')
         
         
         # In[95]:
