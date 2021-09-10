@@ -97,6 +97,8 @@ import sys
 
 # In[4]:
 
+filters_allowed_with_wlp8 = ['f070w','f140m','f182m','f210m','f187n','f212n']
+
 
 def show(array, title, min=0, max=1000):
     """Quick view of an array.
@@ -516,13 +518,20 @@ class grismWrapper(object):
         
         for one_filter in sw_filterList:
             if one_filter == 'wlp4':
-                column_name = 'nircam_wlp4_magnitude'
+                column_names = ['nircam_wlp4_magnitude']
             else:
-                column_name = ''
-            tsimg_cat.add_magnitude_column([all_mag], magnitude_system='vegamag',
-                                           instrument='nircam', filter_name=one_filter,
-                                           column_name=column_name)
+                ## make one column name for in-focus (plain)
+                ## another column for wlp8
+                if one_filter in filters_allowed_with_wlp8:
+                    column_names = ['','nircam_{}_wlp8_magnitude'.format(one_filter)]
+                else:
+                    column_names = ['']
             
+            for column_name in column_names:
+                tsimg_cat.add_magnitude_column([all_mag], magnitude_system='vegamag',
+                                               instrument='nircam', filter_name=one_filter,
+                                               column_name=column_name)
+        
         
         # In[88]:
         
@@ -571,11 +580,8 @@ class grismWrapper(object):
         
         bkgd_sources_ra = self.sys_params['background']['bkgd_sources_ra']
         bkgd_sources_dec = self.sys_params['background']['bkgd_sources_dec']
-        bkgd_sources_f444w_mag = self.sys_params['background']['bkgd_sources_f444w_mag']
-        bkgd_sources_f322w2_mag = self.sys_params['background']['bkgd_sources_f322w2_mag']
-        bkgd_sources_f182m_mag = self.sys_params['background']['bkgd_sources_f182m_mag']
-        bkgd_sources_f210m_mag = self.sys_params['background']['bkgd_sources_f210m_mag']
-        bkgd_sources_f470n_mag = self.sys_params['background']['bkgd_sources_f470n_mag']
+
+        
         
         
         # In[92]:
@@ -592,21 +598,29 @@ class grismWrapper(object):
         
         # In[94]:
         
+        bkg_filt_list = ['f444w','f322w2','f182m','f210m','f470n']
         
         # Add source magnitudes
-        bkgd_cat.add_magnitude_column(bkgd_sources_f182m_mag, magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f182m')
-        bkgd_cat.add_magnitude_column(bkgd_sources_f444w_mag, magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f444w')
-        bkgd_cat.add_magnitude_column(bkgd_sources_f322w2_mag, magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f322w2')
-        bkgd_cat.add_magnitude_column(bkgd_sources_f210m_mag, magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f210m')
-        bkgd_cat.add_magnitude_column(bkgd_sources_f470n_mag, magnitude_system='vegamag',
-                                       instrument='nircam', filter_name='f470n')
+        for filt_ind,one_filt in enumerate(bkg_filt_list):
+            bkg_keyname = "bkgd_sources_{}_mag".format(one_filt)
+            this_mag = self.sys_params['background'][bkg_keyname]
 
+            wlp8_name = "nircam_{}_wlp8_magnitude".format(one_filt)
+            ## two columns: one for focused imaging (not expected to be used much)
+            ## another column for wlp8 imaging
+            if one_filt in filters_allowed_with_wlp8:
+                column_names = ['',wlp8_name]
+            else:
+                column_names = ['']
+
+            for column_name in column_names:
+                bkgd_cat.add_magnitude_column(this_mag, magnitude_system='vegamag',
+                                              instrument='nircam', filter_name=one_filt,
+                                              column_name=column_name)
+        
+        
         ## value for WLP4. Assume the same as F210M
-
+        bkgd_sources_f210m_mag = self.sys_params['background']['bkgd_sources_f210m_mag']
         bkgd_cat.add_magnitude_column(bkgd_sources_f210m_mag, magnitude_system='vegamag',
                                       instrument='nircam', filter_name='wlp4',
                                       column_name='nircam_wlp4_magnitude')
