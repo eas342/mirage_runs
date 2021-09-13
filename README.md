@@ -9,9 +9,12 @@ You can install the prerequisites and exact versions of tools as follows. This a
 git clone https://github.com/eas342/mirage_runs.git
 cd mirage_runs ## or wherever you have placed this repository
 conda activate mirageRuns
+pip install drizzle --no-cache-dir
 pip install -r requirements.txt
 
 ```
+I ran into a problem with the `drizzle` package that was fixed by `--no-cached-dir`, but it may not be necessary for future versions.
+
 ### Testing the installation on a minimal example.
 After your installation is complete, you can test it. This should take a few minutes to finish a simple simulation of a few short integrations.
 
