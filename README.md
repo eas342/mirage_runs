@@ -4,6 +4,7 @@ This repository contains a wrapper to run JWST NIRCam simulations using the mira
 ## Installation
 
 You can install the prerequisites and exact versions of tools as follows. This assumes you already have a conda environment set up for mirage (in this case it is called `mirageRuns`), following the mirage instructions.
+Also make sure that you have a ** super-position of V2 and V3 ** of <a href="https://github.com/npirzkal/GRISM_NIRCAM">GRISM_NIRCAM</a> in `/mirage_data/nircam/GRISM_NIRCAM/current`. Choose files from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called "V2_and_V3_comb".
 
 ``` bash
 git clone https://github.com/eas342/mirage_runs.git

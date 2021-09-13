@@ -836,9 +836,9 @@ class grismWrapper(object):
                 ## tweak the observation time to get transit center correct
                 self.tweak_obs_time_yaml(orig_yaml_path)
             
-            if oneYaml['Mode'] == 'ts_grism':
-                ## tweak the position to get it where we want it
-                self.tweak_tel_pos_in_yaml(orig_yaml_path)
+            #if oneYaml['Mode'] == 'ts_grism':
+            #    ## tweak the position to get it where we want it
+            #    self.tweak_tel_pos_in_yaml(orig_yaml_path)
             
     def check_if_yaml_is_in_table(self,yaml_name):
         """
