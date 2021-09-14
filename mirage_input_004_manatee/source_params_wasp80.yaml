@@ -1,0 +1,41 @@
+descrip: Manatee parameters for WASP-80b
+stellar:
+    teff: 4143 ##K, Triaud et al. 2015
+    metallicity: -0.13 ## [Fe/H], Triaud et al. 2015
+    logg: 4.663 ## log(g), Triaud et al. 2015
+system:
+    kmag: 8.351 ## vega mag
+    ra: 303.166799583 ## deg
+    dec: -2.14443611 ## deg
+    f444w_mag: 8.35
+    f322w2_mag: 8.35
+planet:
+    t0: 10. ## transit center, seconds. Moved because the time series is so short
+    per: 265062.4421 ## seconds, Triaud et al. 2015
+    rp: 0.17137  ## rp/r*, Triaud et al. 2015
+    a: 12.63 ## a/r*, Triaud et al. 2015
+    inc: 89.02 ## inclination, Triaud et al. 2015
+    ecc: 0.  ## eccentricity, rounded to 0
+    w: 90. ## longitude of periastron
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.624,-0.198,0.059,-0.011] ## limb darkening parameters, ExoCTK 4 param law
+    spec_file: 'mirage_input_004_manatee/ck_gto_f_wasp80b_1trans_R100.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [303.169283]
+    bkgd_sources_dec: [-02.142587]
+    bkgd_sources_f444w_mag: [12.4]
+    bkgd_sources_f322w2_mag: [12.4]
+    bkgd_sources_f182m_mag: [12.4]
+    bkgd_sources_f210m_mag: [12.4]
+    bkgd_sources_f470n_mag: [12.4]
+obs:
+    dur: 25000. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 73.2 ## position angle
+    date_obs: '2022-09-30'
+    time_obs: '04:45:00.000'
+    obsnum: 2
+dataPaths:
+    inputDir: 'mirage_input_004_manatee'
+    outputDir: 'mirage_output_004_manatee
+    xmlFile: 'manatee.xml'

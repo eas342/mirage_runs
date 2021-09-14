@@ -1,0 +1,141 @@
+# APT Output Product
+# 
+# APT Version: Version 2021.3  JWST PRD: PRDOPSSOC-039 
+# Date: Tue Sep 14 04:47:46 GMT 2021
+
+JWST Pointing Report for JWST Approved Proposal 1185 (target_confirmation.aptx)
+
+========================================
+* F444W Sec Eclipse (Obs 1)
+** Visit 1:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         1 HD-18973 +300.18212  +22.70978   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F444W       1 HD-18973 +300.18212  +22.70978   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Transit (Obs 2)
+** Visit 2:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-80  +303.16680   -2.14444   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     2 WASP-80  +303.16680   -2.14444   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Transit (Obs 3)
+** Visit 3:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-80  +303.16680   -2.14444   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      2 WASP-80  +303.16680   -2.14444   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Sec Eclipse (Obs 4)
+** Visit 4:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-80  +303.16680   -2.14444   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     2 WASP-80  +303.16680   -2.14444   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Sec Eclipse (Obs 5)
+** Visit 5:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-80  +303.16680   -2.14444   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      2 WASP-80  +303.16680   -2.14444   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Sec Eclipse (Obs 6)
+** Visit 6:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         3 WASP-69  +315.02597   -5.09486   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     3 WASP-69  +315.02597   -5.09486   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Sec Eclipse (Obs 7)
+** Visit 7:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         3 WASP-69  +315.02597   -5.09486   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      3 WASP-69  +315.02597   -5.09486   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Transit (Obs 8)
+** Visit 8:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         4 WASP-107 +188.38643  -10.14621   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     4 WASP-107 +188.38643  -10.14621   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Transit (Obs 9)
+** Visit 9:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         4 WASP-107 +188.38643  -10.14621   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      4 WASP-107 +188.38643  -10.14621   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Sec Eclipse (Obs 10)
+** Visit 10:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F322W2      5 GJ-436   +175.55054  +26.70307   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Sec Eclipse (Obs 11)
+** Visit 11:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F444W       5 GJ-436   +175.55054  +26.70307   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Sec Eclipse (Obs 12)
+** Visit 12:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F322W2      5 GJ-436   +175.55054  +26.70307   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Sec Eclipse (Obs 13)
+** Visit 13:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F444W       5 GJ-436   +175.55054  +26.70307   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Sec Eclipse (Obs 14)
+** Visit 14:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F322W2      5 GJ-436   +175.55054  +26.70307   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Sec Eclipse (Obs 15)
+** Visit 15:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         5 GJ-436   +175.55054  +26.70307   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F444W       5 GJ-436   +175.55054  +26.70307   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Transit (Obs 16)
+** Visit 16:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         8 GJ-3470  +119.77350  +15.39121   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     8 GJ-3470  +119.77350  +15.39121   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Transit (Obs 17)
+** Visit 17:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         8 GJ-3470  +119.77350  +15.39121   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      8 GJ-3470  +119.77350  +15.39121   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+========================================
+* F322W2 Transit (Obs 18)
+** Visit 18:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         9 GJ-1214  +258.83140   +4.96068   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     9 GJ-1214  +258.83140   +4.96068   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* F444W Transit (Obs 19)
+** Visit 19:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         9 GJ-1214  +258.83140   +4.96068   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F444W      9 GJ-1214  +258.83140   +4.96068   +0.000   +1.444   +0.000   +0.000  +90.818 -554.840   +0.000   +1.444 TARGET     SCIENCE        0      0 17.895          
+
+
