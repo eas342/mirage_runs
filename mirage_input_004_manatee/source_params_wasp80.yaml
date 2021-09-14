@@ -37,5 +37,5 @@ obs:
     obsnum: 2
 dataPaths:
     inputDir: 'mirage_input_004_manatee'
-    outputDir: 'mirage_output_004_manatee
+    outputDir: 'mirage_output_004_manatee'
     xmlFile: 'manatee.xml'
