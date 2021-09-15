@@ -3,10 +3,30 @@ This repository contains a wrapper to run JWST NIRCam simulations using the mira
 
 ## Installation
 
-You can install the prerequisites and exact versions of tools as follows. This assumes you already have a conda environment set up for mirage (in this case it is called `mirageRuns`), following the mirage instructions.
-Also make sure that you have a ** super-position of V2 and V3 ** of <a href="https://github.com/npirzkal/GRISM_NIRCAM">GRISM_NIRCAM</a> in `/mirage_data/nircam/GRISM_NIRCAM/current`. Choose files from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called "V2_and_V3_comb".
+You can install the prerequisites and exact versions of tools as follows. Following the exact installation is important to avoid bugs that can arise with different versions.
+I had success with Python version 3.7.11 but others may work as well.
+
+### Step 1: Install Mirage
+The following instructions assume you already have a conda environment set up for mirage (in this case it is called `mirageRuns`), <a href="https://mirage-data-simulator.readthedocs.io/en/latest/install.html">following the mirage instructions</a>.
+It also assumes that you have downloaded the huge set of reference data files and pointed to them with the `MIRAGE_DATA` environment variable. For example, your `$HOME/.bash_profile` will contain something like this line:
+
+```bash
+export MIRAGE_DATA="/my_files/jwst/simulations/mirage_data"
+```
+
+### Step 2: Get the Grism-reference Data
+
+As described in the <a href="https://mirage-data-simulator.readthedocs.io/en/latest/reference_files.html#download-grism-related-reference-data">mirage grism data instructions </a>, you extra data for calculating dispersion. You need a **super-position of V2 and V3** of <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>.
+To get the correct files, do the following:
+
+*  make sure there is a directory that has the path 
+ in `$MIRAGE_DATA/nircam/GRISM_NIRCAM/current`.
+* Download the <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>. I specifically grabbed from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called `V2_and_V3_comb`.
+
+### Step 3: Install the specific packages
 
 ``` bash
+cd /data1/bigdata_hard_drive ## don't use the home directory, but a drive with lots of storage
 git clone https://github.com/eas342/mirage_runs.git
 cd mirage_runs ## or wherever you have placed this repository
 conda activate mirageRuns
@@ -16,7 +36,7 @@ pip install -r requirements.txt
 ```
 I ran into a problem with the `drizzle` package that was fixed by `--no-cached-dir`, but it may not be necessary for future versions.
 
-### Testing the installation on a minimal example.
+### Step 4: Test the installation on a minimal example.
 After your installation is complete, you can test it. This should take a few minutes to finish a simple simulation of a few short integrations.
 
 ``` bash
