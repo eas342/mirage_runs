@@ -196,6 +196,14 @@ class grismWrapper(object):
             self.obsnum = int(self.xml_dict['ObservationID'][0])
         else:
             self.obsnum = use_obsnum
+
+        ## find the target ID
+        obs_matches = np.array(self.xml_dict['ObservationID'],dtype=int) == self.obsnum
+        if np.sum(obs_matches) == 0:
+            raise Exception("Could not find observation ID matching {} in {}".format(self.obsnum,self.xml_dict['ObservationID']))
+        obs_ind = np.where(obs_matches)[0][0]
+        self.this_targID = self.targIDs[obs_ind]
+        print("Will be using Target ID {}".format(self.this_targID))
         
         t_eff = self.sys_params['stellar']['teff']  # surface temperature
         metallicity = self.sys_params['stellar']['metallicity']
@@ -735,7 +743,7 @@ class grismWrapper(object):
         # In[97]:
         
         
-        catalogs = {self.targIDs[0]: {'point_source': self.bkgd_cat_file,
+        catalogs = {self.this_targID: {'point_source': self.bkgd_cat_file,
                                      'tso_imaging_catalog': self.imaging_tso_catalog,
                                      'tso_grism_catalog': self.grism_tso_catalog,
                                      }
