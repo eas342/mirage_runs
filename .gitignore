@@ -1,0 +1,8 @@
+*.DS_Store
+*~
+test_output/
+mirage_output_*
+__pycache__/
+mirage_input_*/mirage_logs/
+mirage_input_*/yaml_files/
+mirage_latest.log
