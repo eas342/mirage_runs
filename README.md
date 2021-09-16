@@ -21,12 +21,32 @@ To get the correct files, do the following:
 
 *  make sure there is a directory that has the path 
  in `$MIRAGE_DATA/nircam/GRISM_NIRCAM/current`.
-* Download the <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>. I specifically grabbed from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called `V2_and_V3_comb`.
+* Download the <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>. I specifically grabbed from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called `V2_and_V3_comb`. This can be accomplished with the following commands:
+
+``` bash
+cd $MIRAGE_DATA/nircam/GRISM_NIRCAM/current
+git clone https://github.com/npirzkal/GRISM_NIRCAM.git
+mkdir GRISM_NIRCAM/V2_V3_comb
+cp GRISM_NIRCAM/V2/* GRISM_NIRCAM/V2_V3_comb/
+cp GRISM_NIRCAM/V3/* GRISM_NIRCAM/V2_V3_comb/
+ln -s GRISM_NIRCAM/V2_V3_comb current
+ls -lht
+```
+The output should look something like:
+
+```
+current -> GRISM_NIRCAM/V2_V3_comb
+GRISM_NIRCAM
+```
 
 ### Step 3: Install the specific packages
 
 ``` bash
-cd /data1/bigdata_hard_drive ## don't use the home directory, but a drive with lots of storage
+cd /data1/bigdata_hard_drive 
+```
+ie., don't use the home directory, but a drive with lots of storage
+
+``` bash
 git clone https://github.com/eas342/mirage_runs.git
 cd mirage_runs ## or wherever you have placed this repository
 conda activate mirageRuns
