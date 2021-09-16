@@ -80,6 +80,11 @@ from synphot import units
 import yaml
 import pdb
 
+import mirage.utils.constants
+
+## reduce file splitting limit so it doesn't use up so much memory
+mirage.utils.constants.FILE_SPLITTING_LIMIT = 16. * 2048. * 2048
+
 from mirage.catalogs.hdf5_catalog import save_tso
 from mirage.catalogs.catalog_generator import GrismTSOCatalog, ImagingTSOCatalog, PointSourceCatalog
 from mirage.catalogs.catalog_generator import TSO_GRISM_INDEX
@@ -91,10 +96,6 @@ from mirage.utils.utils import ensure_dir_exists
 from mirage.yaml import yaml_generator
 from mirage.apt.read_apt_xml import ReadAPTXML
 
-import mirage.utils.constants
-
-## reduce file splitting limit so it doesn't use up so much memory
-mirage.utils.constants.FILE_SPLITTING_LIMIT = 16. * 2048. * 2048
 
 import sys
 
