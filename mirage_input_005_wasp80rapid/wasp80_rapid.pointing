@@ -1,0 +1,15 @@
+# APT Output Product
+# 
+# APT Version: Version 2021.3  JWST PRD: PRDOPSSOC-039 
+# Date: Fri Sep 17 18:54:35 GMT 2021
+
+JWST Pointing Report for JWST Approved Proposal 88881 (wasp80_rapid.aptx)
+
+========================================
+* F322W2 Transit (Obs 2)
+** Visit 2:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-80  +303.16680   -2.14444   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     2 WASP-80  +303.16680   -2.14444   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+
