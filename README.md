@@ -125,7 +125,8 @@ Then, follow these stps
 	conda activate mirageRuns # if relevant environment is not already active
 	cd mirage_runs ## or wherever you have placed this git repository
 	nohup python NIRCam_grism_tso_wrapper.py input/wasp43.yaml > output/mirage_out_wasp43.txt &
-```
+    ```
+
 
 	For larger runs, you can run on a high performance computer/cluster. An <a href="example_slurm/mirage_run_004_wasp80rapid_doublemem.slurm.txt">example slurm script</a> is available.
 
