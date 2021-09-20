@@ -1,6 +1,10 @@
 # Mirage Runs
 This repository contains a wrapper to run JWST NIRCam simulations using the mirage tool. You must install mirage first (https://mirage-data-simulator.readthedocs.io/en/latest/install.html). The intent of this repository is to avoid the version control problem of using the TSO notebook and tracking down/debugging what was different about each mirage run. It also puts all of the input parameters in one place to separate it from the code of creating the mirage simulation.
 
+## Requirements
+
+Currently, mirage requires enormous amounts of memory, so you need a compute machine that can dedicate 256 GB to memory. Hopefully, this should be dramatically reduced to 8 GB.
+
 ## Installation
 
 You can install the prerequisites and exact versions of tools as follows. Following the exact installation is important to avoid bugs that can arise with different versions.
@@ -12,6 +16,14 @@ It also assumes that you have downloaded the huge set of reference data files an
 
 ```bash
 export MIRAGE_DATA="/my_files/jwst/simulations/mirage_data"
+```
+
+You can set up the conda environment like so
+
+``` bash
+conda create -n mirageRuns python=3.7
+cona activate mirageRuns
+pip install mirage
 ```
 
 ### Step 2: Get the Grism-reference Data
@@ -109,11 +121,17 @@ Then, follow these stps
 5. Create a parameter file as described below.
 6. Run the Mirage Wrapper as a script. For example:
 
-``` bash
-conda activate mirageRuns # if relevant environment is not already active
-cd mirage_runs ## or wherever you have placed this git repository
-nohup python NIRCam_grism_tso_wrapper.py input/wasp43.yaml > output/mirage_out_wasp43.txt &
+	``` bash
+	conda activate mirageRuns # if relevant environment is not already active
+	cd mirage_runs ## or wherever you have placed this git repository
+	nohup python NIRCam_grism_tso_wrapper.py input/wasp43.yaml > output/mirage_out_wasp43.txt &
 ```
+
+	For larger runs, you can run on a high performance computer/cluster. An <a href="example_slurm/mirage_run_004_wasp80rapid_doublemem.slurm.txt">example slurm script</a> is available.
+
+7. Check for any immediate errors.
+8. If it appears to be running, check the *.png files in the output directory to see if they are sensical (`star_spec_check.png`, `transmission_spec_check.png`, `tseries_check.png`, etc.)
+
 
 ## Parameter File
 
