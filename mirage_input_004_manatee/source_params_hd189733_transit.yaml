@@ -18,7 +18,7 @@ planet:
     ecc: 0.  ## eccentricity, rounded to 0
     w: 90. ## longitude of periastron
     limb_model: "nonlinear" ## type of limb darkening model
-    ld_u: [0.24,0.379,0.359,-0.222] ## limb darkening parameters, ExoCTK 4 param law
+    ld_u: [0.295,0.033,-0.079,0.034] ## limb darkening parameters, ExoCTK 4 param law, ATLAS9,5052K,4.49,Fe/h=-0.02, NIRCamgrism F444W
     spec_file: 'mirage_input_004_manatee/HD189733b_kmr_clear_1trans_R100.csv'
 background:
     level: 'medium' ## background level
