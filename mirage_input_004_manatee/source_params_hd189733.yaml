@@ -1,0 +1,174 @@
+descrip: Manatee parameters for HD 189733 b, Transit just to test. Will do eclipse later
+stellar:
+    teff: 5050 ## K, Addison et al. 2019
+    metallicity: -0.03 ## [Fe/H], Addison et al. 2019
+    logg: 4.58 ## log(g), Addison et al. 2019
+system:
+    kmag: 5.541 ## vega mag
+    ra: 300.1821220 ## deg
+    dec: 222.709775 ## deg
+    f444w_mag: 5.54
+    f322w2_mag: 5.54
+planet:
+    t0: 10424. ## transit center, seconds.
+    per: 191684.6208 ## seconds, Addison et al. 2019
+    rp: 0.1504  ## rp/r*, Addison et al. 2019
+    a: 8.73 ## a/r*, Addison et al. 2019
+    inc: 85.690 ## inclination, Addison et al. 2019
+    ecc: 0.  ## eccentricity, rounded to 0
+    w: 90. ## longitude of periastron
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.24,0.379,0.359,-0.222] ## limb darkening parameters, ExoCTK 4 param law
+    spec_file: 'mirage_input_004_manatee/HD189733b_kmr_clear_1eclipse_R100.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: 
+        - 300.1741
+        - 300.176319
+        - 300.172699
+        - 300.179061
+        - 300.176363
+        - 300.176122
+        - 300.18111
+        - 300.180196
+        - 300.176216
+        - 300.17509
+        - 300.184056
+        - 300.174659
+        - 300.188473
+        - 300.176074
+        - 300.177406
+        - 300.18069
+        - 300.188894
+        - 300.188098
+        - 300.179745
+    bkgd_sources_dec: 
+        - 22.7122
+        - 22.712538
+        - 22.709558
+        - 22.709513
+        - 22.708496
+        - 22.709717
+        - 22.7078
+        - 22.704754
+        - 22.702873
+        - 22.702017
+        - 22.701218
+        - 22.714918
+        - 22.700834
+        - 22.714359
+        - 22.712553
+        - 22.714754
+        - 22.712971
+        - 22.704512
+        - 22.717272
+    bkgd_sources_f444w_mag:
+        - 15.498
+        - 15.278
+        - 13.048
+        - 9.323
+        - 12.646
+        - 13.497
+        - 13.256
+        - 14.773
+        - 14.703
+        - 15.195
+        - 14.459
+        - 15.426
+        - 11.635
+        - 13.459
+        - 14.628
+        - 13.309
+        - 14.436
+        - 15.528
+        - 15.536
+    bkgd_sources_f322w2_mag:
+        - 15.498
+        - 15.278
+        - 13.048
+        - 9.323
+        - 12.646
+        - 13.497
+        - 13.256
+        - 14.773
+        - 14.703
+        - 15.195
+        - 14.459
+        - 15.426
+        - 11.635
+        - 13.459
+        - 14.628
+        - 13.309
+        - 14.436
+        - 15.528
+        - 15.536
+    bkgd_sources_f182m_mag:
+        - 15.498
+        - 15.278
+        - 13.048
+        - 9.323
+        - 12.646
+        - 13.497
+        - 13.256
+        - 14.773
+        - 14.703
+        - 15.195
+        - 14.459
+        - 15.426
+        - 11.635
+        - 13.459
+        - 14.628
+        - 13.309
+        - 14.436
+        - 15.528
+        - 15.536
+    bkgd_sources_f210m_mag:
+        - 15.498
+        - 15.278
+        - 13.048
+        - 9.323
+        - 12.646
+        - 13.497
+        - 13.256
+        - 14.773
+        - 14.703
+        - 15.195
+        - 14.459
+        - 15.426
+        - 11.635
+        - 13.459
+        - 14.628
+        - 13.309
+        - 14.436
+        - 15.528
+        - 15.536
+    bkgd_sources_f470n_mag: 
+        - 15.498
+        - 15.278
+        - 13.048
+        - 9.323
+        - 12.646
+        - 13.497
+        - 13.256
+        - 14.773
+        - 14.703
+        - 15.195
+        - 14.459
+        - 15.426
+        - 11.635
+        - 13.459
+        - 14.628
+        - 13.309
+        - 14.436
+        - 15.528
+        - 15.536
+obs:
+    dur: 25000. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 16.31 ## position angle, degrees
+    date_obs: '2022-10-14'
+    time_obs: '06:30:00.000'
+    obsnum: 1
+dataPaths:
+    inputDir: 'mirage_input_004_manatee'
+    outputDir: 'mirage_output_004_manatee'
+    xmlFile: 'manatee.xml'
