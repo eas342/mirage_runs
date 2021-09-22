@@ -19,7 +19,7 @@ planet:
     w: 90. ## longitude of periastron
     limb_model: "nonlinear" ## type of limb darkening model
     ld_u: [0.24,0.379,0.359,-0.222] ## limb darkening parameters, ExoCTK 4 param law
-    spec_file: 'mirage_input_004_manatee/HD189733b_kmr_clear_1eclipse_R100.csv'
+    spec_file: 'mirage_input_004_manatee/HD189733b_kmr_clear_1trans_R100.csv'
 background:
     level: 'medium' ## background level
     bkgd_sources_ra: 
