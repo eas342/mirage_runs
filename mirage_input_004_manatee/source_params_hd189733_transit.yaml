@@ -6,7 +6,7 @@ stellar:
 system:
     kmag: 5.541 ## vega mag
     ra: 300.1821220 ## deg
-    dec: 222.709775 ## deg
+    dec: 22.709775 ## deg
     f444w_mag: 5.54
     f322w2_mag: 5.54
 planet:
