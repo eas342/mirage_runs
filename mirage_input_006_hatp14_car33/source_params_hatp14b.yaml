@@ -18,7 +18,7 @@ planet:
     ecc: 0.1074  ## eccentricity, Bonomo et al. 2017
     w: 94.4 ## longitude of periastron, Bonomo et al. 2017
     limb_model: "nonlinear" ## type of limb darkening model
-    ld_u: [0.312,0.998,-0.895,0.303] ## limb darkening parameters, ExoCTK 4 param law
+    ld_u: [0.17,0.473,-0.586,0.215] ## limb darkening parameters, ExoCTK 4 param law
     spec_file: 'mirage_input_006_hatp14_car33/trans_spec_flat.csv'
 background:
     level: 'medium' ## background level
