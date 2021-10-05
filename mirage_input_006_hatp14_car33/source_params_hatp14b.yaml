@@ -10,7 +10,7 @@ system:
     f444w_mag: 8.851
     f322w2_mag: 8.851
 planet:
-    t0: 10193.58. ## transit center, seconds. Using orbital phase start window
+    t0: 10193.58 ## transit center, seconds. Using orbital phase start window
     per: 399830.1696 ## seconds, period in APT
     rp: 0.0805  ## rp/r*, Torres. et al. 2010
     a: 8.87 ## a/r*, Torres et al. 2010
