@@ -1,0 +1,22 @@
+# APT Output Product
+# 
+# APT Version: Version 2021.3  JWST PRD: PRDOPSSOC-039 
+# Date: Tue Oct 05 21:42:05 GMT 2021
+
+JWST Pointing Report for JWST Approved Proposal 1442 (NRC_33_HAT-P-14.aptx)
+
+========================================
+* Primary HAT-P-14 (Obs 1)
+** Visit 1:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         1 HAT-P-14 +260.11617  +38.24217   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM128_F322W2     1 HAT-P-14 +260.11617  +38.24217   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* Secondary WASP-18 (Obs 2)
+** Visit 2:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         2 WASP-18   +24.35446  -45.67779   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM128_F322W2     2 WASP-18   +24.35446  -45.67779   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+
