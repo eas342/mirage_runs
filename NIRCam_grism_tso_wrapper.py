@@ -903,7 +903,6 @@ class grismWrapper(object):
         cleanupFiles = ['dummy_ptsrc.cat',
                         'dummy_ptsrc_with_flambda.cat',
                         'hardcopy.2',
-                        'mirage_latest.log',
                         'source_sed_file_from_dummy_ptsrc_and_test_grism_tso_sed_file_wasp43.hdf5']
         nameString = self.get_jwst_name_str(obsnum=self.obsnum)
         backgImage = '{}_nrca5_uncal_background_image.fits'.format(nameString)
