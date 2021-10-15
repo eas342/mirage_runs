@@ -28,26 +28,24 @@ pip install mirage
 
 ### Step 2: Get the Grism-reference Data
 
-As described in the <a href="https://mirage-data-simulator.readthedocs.io/en/latest/reference_files.html#download-grism-related-reference-data">mirage grism data instructions </a>, you extra data for calculating dispersion. You need a **super-position of V2 and V3** of <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>.
+As described in the <a href="https://mirage-data-simulator.readthedocs.io/en/latest/reference_files.html#download-grism-related-reference-data">mirage grism data instructions </a>, you extra data for calculating dispersion. 
+Use V3 of <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>.
 To get the correct files, do the following:
 
 *  make sure there is a directory that has the path 
  in `$MIRAGE_DATA/nircam/GRISM_NIRCAM/current`.
-* Download the <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>. I specifically grabbed from commit 2cf3b94cb30b413fbff7a004ff4e306619a014e1. Then, copy all the files from V2 into "current" and copy all the files from V3 into "current" and over-write the duplicates with the versions from V3. I usually set a symbolic link from "current" to somewhere else called `V2_and_V3_comb`. This can be accomplished with the following commands:
+* Download the <a href="https://github.com/npirzkal/GRISM_NIRCAM">`GRISM_NIRCAM` data files</a>. I specifically grabbed from commit c74fc0dc9cc9f615283426e77f6534520b9dbb0e. Then, copy all the files from V3 into "current". I usually set a symbolic link from "current" to V3 but copying should work fine. This can be accomplished with the following commands:
 
 ``` bash
 cd $MIRAGE_DATA/nircam/GRISM_NIRCAM/current
 git clone https://github.com/npirzkal/GRISM_NIRCAM.git
-mkdir GRISM_NIRCAM/V2_V3_comb
-cp GRISM_NIRCAM/V2/* GRISM_NIRCAM/V2_V3_comb/
-cp GRISM_NIRCAM/V3/* GRISM_NIRCAM/V2_V3_comb/
-ln -s GRISM_NIRCAM/V2_V3_comb current
+ln -s GRISM_NIRCAM/V3 current
 ls -lht
 ```
 The output should look something like:
 
 ```
-current -> GRISM_NIRCAM/V2_V3_comb
+current -> GRISM_NIRCAM/V3
 GRISM_NIRCAM
 ```
 
