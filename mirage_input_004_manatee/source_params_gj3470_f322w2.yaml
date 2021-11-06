@@ -1,0 +1,41 @@
+descrip: Manatee parameters for GJ 3470 b
+stellar:
+    teff: 3622 ##K, Stefansson et al. 2021
+    metallicity: 0.18 ## Stefansson et al. 2021
+    logg: 4.76 ## log(g), Mass & Radius from Stefansson et al. 2021
+system:
+    kmag: 7.989 ## vega mag
+    ra: 119.7743315 ## deg, Simbad
+    dec: 15.3914556 ## deg, Simbad
+    f444w_mag: 7.989 ## assume Kmag approx
+    f322w2_mag: 7.989 ## assume Kmag approx
+planet:
+    t0: 12335.7. ## transit center, seconds. See mirage_sim_runs_find_t0
+    per: 288286.52544 ## seconds, APT file
+    rp: 0.07641  ## rp/r*, Stefansson et al. 2021
+    a: 13.84 ## a/r*, Stefansson et al. 2021
+    inc: 88.83 ## inclination, Stefansson et al. 2021
+    ecc: 0.115  ## eccentricity, Stefansson et al. 2021
+    w: -82.5 ## longitude of periastron, Stefansson et al. 2021, alth it says arg.
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.658,-0.489,0.209,-0.024] ## limb darkening parameters, ExoCTK 4 param law
+    spec_file: 'mirage_input_004_manatee/GJ3470b_model_for_mirage' ## Luis's model
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [119.763986 , 119.769788] ## 2MASS query, see notebook below
+    bkgd_sources_dec: [15.374246 , 15.40889] ## coordinates_of_backg_stars_for_mirage_sims_GJ3470b.ipynb
+    bkgd_sources_f444w_mag: [15.269 , 14.44] ## assume K mag/Raleigh Jeans for all
+    bkgd_sources_f322w2_mag: [15.269 , 14.44] 
+    bkgd_sources_f182m_mag: [15.269 , 14.44] 
+    bkgd_sources_f210m_mag: [15.269 , 14.44] 
+    bkgd_sources_f470n_mag: [15.269 , 14.44] 
+obs:
+    dur: 23000. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 218.2 ## position angle
+    date_obs: '2022-11-23'
+    time_obs: '22:28:00.000'
+    obsnum: 16
+dataPaths:
+    inputDir: 'mirage_input_004_manatee'
+    outputDir: 'mirage_output_004_manatee'
+    xmlFile: 'manatee.xml'
