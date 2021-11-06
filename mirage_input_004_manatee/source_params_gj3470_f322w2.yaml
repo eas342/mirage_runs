@@ -19,7 +19,7 @@ planet:
     w: -82.5 ## longitude of periastron, Stefansson et al. 2021, alth it says arg.
     limb_model: "nonlinear" ## type of limb darkening model
     ld_u: [0.658,-0.489,0.209,-0.024] ## limb darkening parameters, ExoCTK 4 param law
-    spec_file: 'mirage_input_004_manatee/GJ3470b_model_for_mirage' ## Luis's model
+    spec_file: 'mirage_input_004_manatee/GJ3470b_model_for_mirage.csv' ## Luis's model
 background:
     level: 'medium' ## background level
     bkgd_sources_ra: [119.763986 , 119.769788] ## 2MASS query, see notebook below
