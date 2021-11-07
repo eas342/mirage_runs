@@ -10,7 +10,7 @@ system:
     f444w_mag: 7.989 ## assume Kmag approx
     f322w2_mag: 7.989 ## assume Kmag approx
 planet:
-    t0: 12335.7. ## transit center, seconds. See mirage_sim_runs_find_t0
+    t0: 12335.7 ## transit center, seconds. See mirage_sim_runs_find_t0
     per: 288286.52544 ## seconds, APT file
     rp: 0.07641  ## rp/r*, Stefansson et al. 2021
     a: 13.84 ## a/r*, Stefansson et al. 2021
