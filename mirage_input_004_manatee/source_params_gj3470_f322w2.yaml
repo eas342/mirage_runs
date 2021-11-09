@@ -5,8 +5,8 @@ stellar:
     logg: 4.76 ## log(g), Mass & Radius from Stefansson et al. 2021
 system:
     kmag: 7.989 ## vega mag
-    ra: 119.77310181 ## deg, Simbad
-    dec: 15.39109004 ## deg, Simbad
+    ra: 119.7735 ## deg, Simbad
+    dec: 15.39121 ## deg, Simbad
     f444w_mag: 7.989 ## assume Kmag approx
     f322w2_mag: 7.989 ## assume Kmag approx
 planet:
