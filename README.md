@@ -93,7 +93,7 @@ There are a handful of steps needed to run a simulation. Be prepared to gather
 	   - K magnitude (Vega system)
 	   - F444W magnitude (likely the same as the K mag within errors)
 	   - F322W2 magnitude (likely the same as the K mag to within errors)
-	+ the system's RA & Dec coordinates in degrees
+	+ the system's RA & Dec coordinates in degrees (should be at the SAME EPOCH as the APT file and same values)
 	+ planet parameters
 	   - transit center time
 	   - period
@@ -150,9 +150,9 @@ A string to describe the mirage Run. For example `"WASP-43 b Transit"`
 ### system
 `kmag`: The 2MASS Vega Magnitude of the system in the K_S band (the default for looking something up in Simbad.
 
-`ra`: The right ascension coordinates in **degrees**. For example, `66.3709122`
+`ra`: The right ascension coordinates in **degrees**. For example, `66.3709122`. Should be at the SAME EPOCH as the APT file and same value.
 
-`dec`: The declination coordinates in **degrees**. For example `-30.6000045`.
+`dec`: The declination coordinates in **degrees**. For example `-30.6000045`. Should be at the SAME EPOCH as the APT file and same value.
 
 `f444w_mag`: The Vega magnitude in the JWST F444W band. In most cases, you can set this equal to the `kmag` because it is the Raleigh Jeans limit for stars and is probably the same within errors.
 
