@@ -4,11 +4,11 @@ stellar:
     metallicity: 0.11 ## [Fe/H], Torres et al. 2010
     logg: 4.25 ## log(g), Torres et al. 2010
 system:
-    kmag: 8.851 ## vega mag
+    kmag: 10.851 ## vega mag
     ra: 260.11643468 ## deg
     dec: 38.24241319 ## deg
-    f444w_mag: 9.851
-    f322w2_mag: 9.851
+    f444w_mag: 10.851
+    f322w2_mag: 10.851
 planet:
     t0: 10193.58 ## transit center, seconds. Using orbital phase start window
     per: 399830.1696 ## seconds, period in APT

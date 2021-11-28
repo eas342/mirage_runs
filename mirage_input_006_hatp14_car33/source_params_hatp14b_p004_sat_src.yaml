@@ -4,7 +4,7 @@ stellar:
     metallicity: 0.11 ## [Fe/H], Torres et al. 2010
     logg: 4.25 ## log(g), Torres et al. 2010
 system:
-    kmag: 8.851 ## vega mag
+    kmag: 6.851 ## vega mag
     ra: 260.11615958 ## deg
     dec: 38.24219713 ## deg
     f444w_mag: 6.851
