@@ -38,4 +38,4 @@ obs:
 dataPaths:
     inputDir: 'mirage_input_006_hatp14_car33'
     outputDir: 'mirage_output_006_04_hatp14_car33_sat'
-    xmlFile: 'NRC_33_HAT-P-14.xml'
+    xmlFile: 'NRC_33_HAT-P-14_short_quick_checks.xml'
