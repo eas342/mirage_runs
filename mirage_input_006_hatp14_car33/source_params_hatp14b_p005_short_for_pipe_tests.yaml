@@ -1,0 +1,41 @@
+descrip: Manatee parameters for WASP-80b
+stellar:
+    teff: 6600 ##K, Torres et al. 2010
+    metallicity: 0.11 ## [Fe/H], Torres et al. 2010
+    logg: 4.25 ## log(g), Torres et al. 2010
+system:
+    kmag: 8.851 ## vega mag
+    ra: 260.11615958 ## deg
+    dec: 38.24219713 ## deg
+    f444w_mag: 8.851
+    f322w2_mag: 8.851
+planet:
+    t0: 10193.58 ## transit center, seconds. Using orbital phase start window
+    per: 399830.1696 ## seconds, period in APT
+    rp: 0.0805  ## rp/r*, Torres. et al. 2010
+    a: 8.87 ## a/r*, Torres et al. 2010
+    inc: 83.5 ## inclination, Triaud et al. 2015
+    ecc: 0.1074  ## eccentricity, Bonomo et al. 2017
+    w: 94.4 ## longitude of periastron, Bonomo et al. 2017
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.17,0.473,-0.586,0.215] ## limb darkening parameters, ExoCTK 4 param law
+    spec_file: 'mirage_input_006_hatp14_car33/trans_spec_flat.csv'
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [260.133733 , 260.138268 , 260.10679 , 260.111917 , 260.106707 , 260.115860602]
+    bkgd_sources_dec: [38.227322 , 38.248421 , 38.253716 , 38.24876 , 38.225731 , 38.2422218103]
+    bkgd_sources_f444w_mag: [14.482 , 14.38 , 13.996 , 17.009 , 15.612 , 13.841]
+    bkgd_sources_f322w2_mag: [14.482 , 14.38 , 13.996 , 17.009 , 15.612 , 13.841]
+    bkgd_sources_f182m_mag: [14.482 , 14.38 , 13.996 , 17.009 , 15.612 , 13.841]
+    bkgd_sources_f210m_mag: [14.482 , 14.38 , 13.996 , 17.009 , 15.612 , 13.841]
+    bkgd_sources_f470n_mag: [14.482 , 14.38 , 13.996 , 17.009 , 15.612 , 13.841]
+obs:
+    dur: 19000. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 284.4 ## position angle
+    date_obs: '2022-03-12'
+    time_obs: '10:03:23.000'
+    obsnum: 1
+dataPaths:
+    inputDir: 'mirage_input_006_hatp14_car33'
+    outputDir: 'mirage_output_006_05_hatp14_short'
+    xmlFile: 'NRC_33_HAT-P-14_short_quick_checks.xml'
