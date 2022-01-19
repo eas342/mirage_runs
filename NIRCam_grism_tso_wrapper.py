@@ -890,7 +890,7 @@ class grismWrapper(object):
                               final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
                               extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
                               orders=["+1", "+2"],
-                              lightcurves=self.lightcurves,lightcurve_times=self.ligthcurve_times,
+                              lightcurves=self.lightcurves,lightcurve_times=self.lightcurve_times,
                               lightcurve_wavelengths=self.lightcurve_wavelengths)
             # ### Grism TSO Data
             
