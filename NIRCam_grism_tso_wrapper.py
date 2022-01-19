@@ -196,7 +196,14 @@ class grismWrapper(object):
             self.obsnum = int(self.xml_dict['ObservationID'][0])
         else:
             self.obsnum = use_obsnum
-
+        
+        ## check if custom 2D lightcurves are specified
+        if "custom2D" in self.sys_params['planet'].keys():
+            self.custom2Dfile = None
+        else:
+            self.custom2Dfile = self.sys_params['plane']['custom2D'] 
+        
+        
         ## find the target ID
         obs_matches = np.array(self.xml_dict['ObservationID'],dtype=int) == self.obsnum
         if np.sum(obs_matches) == 0:
@@ -302,8 +309,7 @@ class grismWrapper(object):
         
         # In[65]:
         
-        
-        # Esposito et al. 2017 parameters on NASA Exoplanet Archive
+        # Put in parameters
         params = batman.TransitParams()       # object to store transit parameters 
         params.t0 = self.sys_params['planet']['t0']                        # time of inferior conjunction (This one is just offset from start)
         params.per = self.sys_params['planet']['per']    # orbital period, Esposito
@@ -415,6 +421,17 @@ class grismWrapper(object):
                                     end_time=[np.max(times)], inferior_conj=[params.t0],
                                     transmission_spectrum=[tran_spec_file])
         
+        
+        # Create a custom 2D time series if specified
+        if self.custom2Dfile is None:
+            self.lightcurves = None
+            self.lightcurve_times = None
+            self.lightcurve_wavelengths = None
+        else:
+            HDUList_lc2D = fits.open(self.custom2Dfile)
+            self.lightcurves = HDUList_lc2D['FLUX']
+            self.lightcurve_times = HDUList_lc2D['TIME']
+            self.lightcurve_wavelengths = HDUList_lc2D['WAVE']
         
         # Add the source magnitudes to the catalog
         
@@ -872,7 +889,9 @@ class grismWrapper(object):
             gr_tso  = GrismTSO(gr_tso_yaml_file, SED_file=self.sed_file, SED_normalizing_catalog_column=None,
                               final_SED_file=None, save_dispersed_seed=True, source_stamps_file=None,
                               extrapolate_SED=True, override_dark=None, disp_seed_filename=None,
-                              orders=["+1", "+2"])
+                              orders=["+1", "+2"],
+                              lightcurves=self.lightcurves,lightcurve_times=self.ligthcurve_times,
+                              lightcurve_wavelengths=self.lightcurve_wavelengths)
             # ### Grism TSO Data
             
             # NOTE: This line will take a long time to run!

@@ -95,6 +95,7 @@ There are a handful of steps needed to run a simulation. Be prepared to gather
 	   - F322W2 magnitude (likely the same as the K mag to within errors)
 	+ the system's RA & Dec coordinates in degrees (should be at the SAME EPOCH as the APT file and same values)
 	+ planet parameters
+      - custom 2D lightcurve file (optional)
 	   - transit center time
 	   - period
 	   - planet radius/stellar radius Rp/R*
