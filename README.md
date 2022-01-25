@@ -202,7 +202,7 @@ Describes the observations.
 
 `time_obs`: (string) The exact time of the exposure start. For example, `"02:50:06.000"`. Note that the transit center will happen at this time plus the value above under `planet: t0`.
 
-`obsnum`: (list of ints) The observation numbers from the APT file. If "null" in the yaml file (`None` in Python), it will use the first one available. For example, `[1]`.
+`obsnum`: (int) The observation number from the APT file. If "null" in the yaml file (`None` in Python), it will use the first one available. For example, `1`.
 
 ### dataPaths
 These say where to grab input data and where the outputs are.
