@@ -35,7 +35,7 @@ obs:
     pav3: 0.0 ## position angle
     date_obs: '2022-11-01'
     time_obs: '02:50:06.000'
-    obsnum: [2] ## do the F322W2 sim
+    obsnum: 2 ## do the F322W2 sim
 dataPaths:
     inputDir: 'mirage_input_009_quick_tser2D_test'
     outputDir: 'mirage_output_009_test_tser2D'
