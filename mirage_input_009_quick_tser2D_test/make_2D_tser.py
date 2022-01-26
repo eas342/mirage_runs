@@ -10,11 +10,8 @@ def make_2D():
     timeArr = np.arange(nTime)
     flux2D = np.ones([nTime,nWaves])
     
-    ## make a flux bump for the first int
-    ## 3 frame times if 4 seconds
-    ## so make the first 4 sec different
-    ## at some wavelengths
-    flux2D[0:4,3:6] = 1.1
+    ## make a flux bump in the middle
+    flux2D[40:60,3:6] = 1.2
     
     primHDU = fits.PrimaryHDU(flux2D)
     primHDU.name = "FLUX"
@@ -30,7 +27,7 @@ def make_2D():
     
     
     HDUList = fits.HDUList([primHDU,timeHDU,waveHDU])
-    HDUList.writeto('ex_timeser2D.fits',overwrite=True)
+    HDUList.writeto('ex_timeser2D_longer.fits',overwrite=True)
 
 if __name__ == "__main__":
     make_2D()
