@@ -429,9 +429,9 @@ class grismWrapper(object):
             self.lightcurve_wavelengths = None
         else:
             HDUList_lc2D = fits.open(self.custom2Dfile)
-            self.lightcurves = HDUList_lc2D['FLUX']
-            self.lightcurve_times = HDUList_lc2D['TIME']
-            self.lightcurve_wavelengths = HDUList_lc2D['WAVE']
+            self.lightcurves = HDUList_lc2D['FLUX'].data
+            self.lightcurve_times = HDUList_lc2D['TIME'].data
+            self.lightcurve_wavelengths = HDUList_lc2D['WAVE'].data
         
         # Add the source magnitudes to the catalog
         
