@@ -199,9 +199,9 @@ class grismWrapper(object):
         
         ## check if custom 2D lightcurves are specified
         if "custom2D" in self.sys_params['planet'].keys():
-            self.custom2Dfile = None
+            self.custom2Dfile = self.sys_params['planet']['custom2D'] 
         else:
-            self.custom2Dfile = self.sys_params['plane']['custom2D'] 
+            self.custom2Dfile = None
         
         
         ## find the target ID
