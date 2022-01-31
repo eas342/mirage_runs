@@ -25,8 +25,13 @@ def make_2D():
     waveHDU.name = 'WAVE'
     waveHDU.header['BUNIT'] = ('um','microns')
     
+    phot = np.ones(nTime)
+    phot[20:30] = 1.5
+    photHDU = fits.ImageHDU(phot)
+    photHDU.name = 'PHOTOMETRY'
+    photHDU.header['BUNIT'] = ('norm-flux', 'normalized flux')
     
-    HDUList = fits.HDUList([primHDU,timeHDU,waveHDU])
+    HDUList = fits.HDUList([primHDU,timeHDU,waveHDU,photHDU])
     HDUList.writeto('ex_timeser2D_longer.fits',overwrite=True)
 
 if __name__ == "__main__":
