@@ -229,9 +229,9 @@ Describes the observations.
 
 `dur`: (float) Duration of the exposure used to calculate interpolating functions.
 
-`pav3`: (float) The position angle of the V3 axis at observation in degrees. This is important when there are neighboring stars that could contaminate the spectrum of the target.
+`pav3`: (float) The position angle of the V3 axis at observation in degrees. This is important when there are neighboring stars that could contaminate the spectrum of the target. Check that it is consistent with the special requirements restraints from the APT file.
 
-`date_obs`: (string) The exact date of the exposure start. For example, `"2022-11-01"`.
+`date_obs`: (string) The exact date of the exposure start. For example, `"2022-11-01"`. You can check this against the APT visit planner.
 
 `time_obs`: (string) The exact time of the exposure start. For example, `"02:50:06.000"`. Note that the transit center will happen at this time plus the value above under `planet: t0`.
 
