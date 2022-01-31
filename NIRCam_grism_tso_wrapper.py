@@ -376,12 +376,12 @@ class grismWrapper(object):
         
         # In[72]:
         
-        
-        f, a = plt.subplots()
-        a.scatter(waves, trans, color='red', marker='o')
-        a.set_xlabel('Wavelength (microns)')
-        a.set_ylabel('Transmission')
-        f.savefig(os.path.join(self.output_dir,'transmission_spec_check.png'),dpi=150)
+        if self.custom2Dfile is None:
+            f, a = plt.subplots()
+            a.scatter(waves, trans, color='red', marker='o')
+            a.set_xlabel('Wavelength (microns)')
+            a.set_ylabel('Transmission')
+            f.savefig(os.path.join(self.output_dir,'transmission_spec_check.png'),dpi=150)
         
         
         
@@ -428,6 +428,7 @@ class grismWrapper(object):
             self.lightcurve_times = None
             self.lightcurve_wavelengths = None
             self.phot_lightcurve = None
+            
         else:
             HDUList_lc2D = fits.open(self.custom2Dfile)
             self.lightcurves = HDUList_lc2D['FLUX'].data
@@ -437,6 +438,13 @@ class grismWrapper(object):
                 self.phot_lightcurve = HDUList_lc2D['PHOTOMETRY'].data
             else:
                 self.phot_lightcurve = None
+            
+            f, a = plt.subplots()
+            trans2 = np.min(self.lightcurves,axis=0)
+            a.scatter(self.lightcurve_wavelengths, trans2, color='red', marker='o')
+            a.set_xlabel('Wavelength (microns)')
+            a.set_ylabel('Transmission')
+            f.savefig(os.path.join(self.output_dir,'min_spec_check.png'),dpi=150)
         
         # Add the source magnitudes to the catalog
         
@@ -481,16 +489,7 @@ class grismWrapper(object):
             flux = m.light_curve(params)
         
         
-            # Plot the lightcurve to be used to generate the data
-        
-            # In[80]:
-        
-        
-            f, a = plt.subplots()
-            a.scatter(times, flux, color='red', marker='v')
-            a.set_xlabel('Time (sec)')
-            a.set_ylabel('Normalized Signal')
-            f.savefig(os.path.join(self.output_dir,'tseries_check.png'),dpi=150)
+
         
         
             # In[81]:
@@ -504,6 +503,17 @@ class grismWrapper(object):
         else:
             times = self.lightcurve_times
             flux = self.phot_lightcurve
+        
+        # Plot the lightcurve to be used to generate the data
+    
+        # In[80]:
+    
+    
+        f, a = plt.subplots()
+        a.scatter(times, flux, color='red', marker='v')
+        a.set_xlabel('Time (sec)')
+        a.set_ylabel('Normalized Signal')
+        f.savefig(os.path.join(self.output_dir,'tseries_check.png'),dpi=150)
         
         lightcurve_file = os.path.join(self.output_dir, 'phot_lightcurve.hdf5')
         
