@@ -1,4 +1,4 @@
-descrip: Manatee parameters for WASP-80b
+descrip: ERS parameters for WASP-39 b, astrophysical signal only
 stellar:
     teff: 5500 ##K, Triaud et al. 2015
     metallicity: 0.0 ## [Fe/H], Triaud et al. 2015
