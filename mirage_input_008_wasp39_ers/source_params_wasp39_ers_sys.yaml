@@ -1,0 +1,42 @@
+descrip: ERS parameters for WASP-39 b, with systematics
+stellar:
+    teff: 5500 ##K, Triaud et al. 2015
+    metallicity: 0.0 ## [Fe/H], Triaud et al. 2015
+    logg: 4.5 ## log(g), Triaud et al. 2015
+system:
+    kmag: 10.202 ## vega mag
+    ra: 217.3266479 ## deg
+    dec: -3.4445 ## deg
+    f444w_mag: 10.202
+    f322w2_mag: 10.202
+planet:
+    custom2D: 'mirage_input_008_wasp39_ers/timeser2D_sys.fits'
+    t0: 7000. ## transit center, seconds, ignore b/c it will be replaced by 2D file
+    per: 200000.0 ## seconds, ignore b/c it will be replaced by 2D file
+    rp: 0.1  ## ignore b/c it will be replaced by 2D file
+    a: 10.0 ## a/r*, Triaud et al. 2015, ignore b/c it will be replaced by 2D file
+    inc: 90.0 ## inclination, ignore b/c it will be replaced by 2D file
+    ecc: 0.  ## eccentricity, ignore b/c it will be replaced by 2D file
+    w: 90. ## longitude of periastron, ignore b/c it will be replaced by 2D file
+    limb_model: "nonlinear" ## type of limb darkening model
+    ld_u: [0.6,-0.2,0.06,-0.01] ## limb darkening parameters, ignore b/c it will be replaced by 2D file
+    spec_file: 'mirage_input_004_manatee/ck_gto_f_wasp80b_1trans_R100.csv' #, ignore b/c it will be replaced by 2D file
+background:
+    level: 'medium' ## background level
+    bkgd_sources_ra: [217.337769 , 217.31974 , 217.33879 , 217.326719]
+    bkgd_sources_dec: [-3.441249 , -3.460491 , -3.455293 , -3.461993]
+    bkgd_sources_f444w_mag: [14.781 , 15.423 , 14.146 , 15.604]
+    bkgd_sources_f322w2_mag: [14.781 , 15.423 , 14.146 , 15.604]
+    bkgd_sources_f182m_mag: [14.781 , 15.423 , 14.146 , 15.604]
+    bkgd_sources_f210m_mag: [14.781 , 15.423 , 14.146 , 15.604]
+    bkgd_sources_f470n_mag: [14.781 , 15.423 , 14.146 , 15.604]
+obs:
+    dur: 32000. ## duration to calculate interpolating function for exposure, seconds
+    pav3: 122.0 ## position angle
+    date_obs: '2022-07-22'
+    time_obs: '19:20:00.000'
+    obsnum: 2
+dataPaths:
+    inputDir: 'mirage_input_008_wasp39_ers'
+    outputDir: 'mirage_output_008_wasp39_ers_with_sys'
+    xmlFile: 'ers_prog1366.xml'
