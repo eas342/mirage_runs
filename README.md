@@ -118,7 +118,8 @@ Then, follow these stps
 3. Export a `.xml` file using File -> Export
 4. Export a `.pointing` file using File -> Export. **Make sure it is the same name as the `.xml` file**. For example, `my_program.xml` and `my_program.pointing`
 5. Create a parameter file as described below.
-6. Run the Mirage Wrapper as a script. For example:
+6. If using a custom 2D lightcurve, make sure to copy it to the server where this is being run.
+7. Run the Mirage Wrapper as a script. For example:
 
 	``` bash
 	conda activate mirageRuns # if relevant environment is not already active
@@ -129,8 +130,8 @@ Then, follow these stps
 
 	For larger runs, you can run on a high performance computer/cluster. An <a href="example_slurm/mirage_run_004_wasp80rapid_doublemem.slurm.txt">example slurm script</a> is available.
 
-7. Check for any immediate errors.
-8. If it appears to be running, check the *.png files in the output directory to see if they are sensical (`star_spec_check.png`, `transmission_spec_check.png`, `tseries_check.png`, etc.)
+8. Check for any immediate errors.
+9. If it appears to be running, check the *.png files in the output directory to see if they are sensical (`star_spec_check.png`, `transmission_spec_check.png`, `tseries_check.png`, etc.)
 
 
 ## Parameter File
