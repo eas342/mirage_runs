@@ -1,0 +1,64 @@
+# APT Output Product
+# 
+# APT Version: Version 2021.3  JWST PRD: PRDOPSSOC-039 
+# Date: Wed Jan 12 22:36:32 GMT 2022
+
+JWST Pointing Report for JWST Approved Proposal 1366 (Unsaved)
+
+========================================
+* NIRISS SOSS (Obs 1)
+** Visit 1:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NIS_SOSSTA                1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  0    0   0    0 NIS_SOSSTA                1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   -0.131   -0.262 -351.840 -686.660   -0.131   -0.262 TARGET     T_ACQ          0      0  0.292          
+  0    0   0    0 NIS_SOSSTA                1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   -0.196   +0.329 -351.769 -686.070   -0.196   +0.329 TARGET     T_ACQ          0      0  0.594          
+  0    0   0    0 NIS_SOSSTA                1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     T_ACQ          0      0  0.383          
+  1    1   1    1 NIS_SUBSTRIP256           1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+  1    1   2    1 NIS_SUBSTRIP256           1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 FILTER     SCIENCE        0      0  0.000          
+
+========================================
+* NIRCam F322W2 (Obs 2)
+** Visit 2:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM256_F322W2     1 WASP-39  +217.32665   -3.44450   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+========================================
+* NIRSpec G395H (Obs 3)
+** Visit 3:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  0    0   0    0 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000          
+  1    1   1    1 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+
+========================================
+* NIRSpec PRISM (Obs 4)
+** Visit 4:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  0    0   0    0 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000          
+  1    1   1    1 NRS_S1600A1_SLIT          1 WASP-39  +217.32665   -3.44450   +0.000   +0.000   +0.000   +0.000 +321.532 -473.679   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+
+========================================
+* MIRI LRS Phase Curve (Obs 11)
+** Visit 11:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 MIRIM_TABLOCK             2 WASP-43  +154.90819   -9.80644   +0.000   +0.000   +0.000   +0.000 -407.464 -387.100   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  0    0   0    0 MIRIM_TASLITLESSPRISM     2 WASP-43  +154.90819   -9.80644   -0.040   -0.082   +0.000   +0.000 -378.087 -335.850   -0.040   -0.082 TARGET     T_ACQ          0      0 59.073          
+  1    1   1    1 MIRIM_SLITLESSPRISM       2 WASP-43  +154.90819   -9.80644   +0.000   +0.000   +0.000   +0.000 -378.832 -344.945   +0.000   +0.000 TARGET     VERIFY         0      0  9.125          
+  1    1   2    1 MIRIM_SLITLESSPRISM       2 WASP-43  +154.90819   -9.80644   +0.000   +0.000   +0.000   +0.000 -378.832 -344.945   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+  1    1   2    1 MIRIM_SLITLESSPRISM       2 WASP-43  +154.90819   -9.80644   +0.000   +0.000   +0.000   +0.000 -378.832 -344.945   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+  1    1   2    1 MIRIM_SLITLESSPRISM       2 WASP-43  +154.90819   -9.80644   +0.000   +0.000   +0.000   +0.000 -378.832 -344.945   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+
+========================================
+* NIRISS SOSS Eclipse (Obs 21)
+** Visit 21:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NIS_SOSSTA                3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  0    0   0    0 NIS_SOSSTA                3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   -0.131   -0.262 -351.840 -686.660   -0.131   -0.262 TARGET     T_ACQ          0      0  0.292          
+  0    0   0    0 NIS_SOSSTA                3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   -0.196   +0.329 -351.769 -686.070   -0.196   +0.329 TARGET     T_ACQ          0      0  0.594          
+  0    0   0    0 NIS_SOSSTA                3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     T_ACQ          0      0  0.383          
+  1    1   1    1 NIS_SUBSTRIP96            3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 TARGET     SCIENCE        0      0  0.000          
+  1    1   2    1 NIS_SUBSTRIP96            3 WASP-18   +24.35446  -45.67779   +0.000   +0.000   +0.000   +0.000 -351.968 -686.397   +0.000   +0.000 FILTER     SCIENCE        0      0  0.000          
+
+
