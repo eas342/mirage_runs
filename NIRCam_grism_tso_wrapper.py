@@ -427,11 +427,16 @@ class grismWrapper(object):
             self.lightcurves = None
             self.lightcurve_times = None
             self.lightcurve_wavelengths = None
+            self.phot_lightcurve = None
         else:
             HDUList_lc2D = fits.open(self.custom2Dfile)
             self.lightcurves = HDUList_lc2D['FLUX'].data
             self.lightcurve_times = HDUList_lc2D['TIME'].data
             self.lightcurve_wavelengths = HDUList_lc2D['WAVE'].data
+            if 'PHOTOMETRY' in HDUList_lc2D:
+                self.phot_lightcurve = HDUList_lc2D['PHOTOMETRY'].data
+            else:
+                self.phot_lightcurve = None
         
         # Add the source magnitudes to the catalog
         
@@ -463,39 +468,44 @@ class grismWrapper(object):
         # <a id="lightcurve_file"></a>
         # ### Create Lightcurve File
         
-        # For the imaging time series observations, we need to provide a file that contains the lightcurve to use when simulating the data.
+        if self.phot_lightcurve is None:
+            
+            # For the imaging time series observations, we need to provide a file that contains the lightcurve to use when simulating the data.
         
-        # Initialize the batman model using the parameters specified in the [Batman Parameters](batman_parameters) section and generate a lightcurve.
+            # Initialize the batman model using the parameters specified in the [Batman Parameters](batman_parameters) section and generate a lightcurve.
         
-        # In[79]:
+            # In[79]:
         
 
-        m = batman.TransitModel(params, times)
-        flux = m.light_curve(params)
+            m = batman.TransitModel(params, times)
+            flux = m.light_curve(params)
         
         
-        # Plot the lightcurve to be used to generate the data
+            # Plot the lightcurve to be used to generate the data
         
-        # In[80]:
-        
-        
-        f, a = plt.subplots()
-        a.scatter(times, flux, color='red', marker='v')
-        a.set_xlabel('Time (sec)')
-        a.set_ylabel('Normalized Signal')
-        f.savefig(os.path.join(self.output_dir,'tseries_check.png'),dpi=150)
+            # In[80]:
         
         
-        # In[81]:
+            f, a = plt.subplots()
+            a.scatter(times, flux, color='red', marker='v')
+            a.set_xlabel('Time (sec)')
+            a.set_ylabel('Normalized Signal')
+            f.savefig(os.path.join(self.output_dir,'tseries_check.png'),dpi=150)
         
         
-        lightcurve_file = os.path.join(self.output_dir, 'example_lightcurve.hdf5')
+            # In[81]:
         
         
-        # Place the lightcurve into a dictionary to prepare for saving. The keys are object indexes corresponding to objects in the Mirage input catalogs. 
         
-        # In[82]:
         
+            # Place the lightcurve into a dictionary to prepare for saving. The keys are object indexes corresponding to objects in the Mirage input catalogs. 
+        
+            # In[82]:
+        else:
+            times = self.lightcurve_times
+            flux = self.phot_lightcurve
+        
+        lightcurve_file = os.path.join(self.output_dir, 'phot_lightcurve.hdf5')
         
         contents = {}
         contents['1'] = {'times': times,

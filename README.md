@@ -180,6 +180,38 @@ A string to describe the mirage Run. For example `"WASP-43 b Transit"`
 
 `spec_file`: The path to the spectrum file that contains the planet spectrum.
 
+`custom2D`: Give the path to a custom 2D lightcurve FITS file. The fits file must contain the following extensions:
+
+* FLUX: a 2D lightcurve extension (AXIS1=wavelength, AXIS2=Time)
+* TIME: a 1d time extension in seconds
+* WAVE: a 1d wave extension in microns
+* PHOTOMETRY: a normalized 1d photometry flux extension
+
+For example, here is how to make one:
+
+```python
+from astropy.io import fits
+
+primHDU = fits.PrimaryHDU(tser_norm2D)
+primHDU.name = "FLUX"
+primHDU.header['AXIS1'] = ('wavelength', 'wavelength axis')
+primHDU.header['AXIS2'] = ('time','time axis')
+primHDU.header['BUNIT'] = ('norm-flux', 'normalized flux')
+timeHDU = fits.ImageHDU(timeArr)
+timeHDU.name = 'TIME'
+timeHDU.header['BUNIT'] = ('seconds','seconds')
+waveHDU = fits.ImageHDU(waves)
+waveHDU.name = 'WAVE'
+waveHDU.header['BUNIT'] = ('um','microns')
+
+photHDU = fits.ImageHDU(phot)
+photHDU.name = 'PHOTOMETRY'
+photHDU.header['BUNIT'] = ('norm-flux', 'normalized flux')
+
+HDUList = fits.HDUList([primHDU,timeHDU,waveHDU,photHDU])
+HDUList.writeto('data/timeser2D_astroph.fits',overwrite=True)
+```
+
 ### background
 This describes both the zodiacal background as well as any other neighboring stars.
 
