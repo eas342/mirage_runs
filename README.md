@@ -213,7 +213,8 @@ HDUList.writeto('data/timeser2D_astroph.fits',overwrite=True)
 ```
 
 ### background
-This describes both the zodiacal background as well as any other neighboring stars.
+This describes both the zodiacal background as well as any other neighboring stars. You can use a notebook like this <a href="prep_notebooks/coordinates_of_backg_stars_for_mirage_sims_wasp39b.ipynb">prep_notebook</a>.
+
 
 `level`: (string) The level of the Zodiacal background. For example, `"medium"`
 
