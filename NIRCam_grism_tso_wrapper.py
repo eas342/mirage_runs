@@ -48,7 +48,7 @@ import os
 #os.environ["CRDS_PATH"] = "/fenrirdata1/es_tso/crds_cache"
 #os.environ["CRDS_SERVER_URL"] = "https://jwst-crds.stsci.edu"
 os.environ['MIRAGE_DATA']
-
+os.environ['CRDS_CONTEXT']="jwst_0780.pmap"
 
 # In[2]:
 
