@@ -37,6 +37,6 @@ obs:
     time_obs: '19:20:00.000'
     obsnum: 2
 dataPaths:
-    inputDir: 'mirage_input_010_bright_one_over_f'
-    outputDir: 'mirage_output_008_wasp39_short_test'
+    inputDir: 'mirage_input_010_test_rapid10'
+    outputDir: 'mirage_output_010_test_rapid10int'
     xmlFile: 'ers_apt_prog1366_short_tests_rapid64.xml'
