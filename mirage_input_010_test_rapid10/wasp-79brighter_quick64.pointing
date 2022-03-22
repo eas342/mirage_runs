@@ -1,0 +1,15 @@
+# APT Output Product
+# 
+# APT Version: Version 2022.1.1  JWST PRD: PRDOPSSOC-041 
+# Date: Tue Mar 22 03:15:05 GMT 2022
+
+JWST Pointing Report for JWST Submitted Proposal 88888 (wasp-79brighter_quick64.aptx)
+
+========================================
+* GrismTSO-F322W2 (Obs 2)
+** Visit 2:1
+Tar Tile Exp Dith Aperture Name             Target       RA         Dec        BaseX    BaseY    DithX    DithY    V2       V3       IdlX     IdlY   Level      Type      ExPar  DkPar   dDist          
+  0    0   0    0 NRCA5_TAGRISMTS32         1 WASP-79-  +66.37090  -30.60045   +0.000   +0.000   +0.000   +0.000  +73.230 -551.540   +0.000   +0.000 TARGET     T_ACQ          0      0  0.000 (base)
+  1    1   1    1 NRCA5_GRISM64_F322W2      1 WASP-79-  +66.37090  -30.60045   +0.000   +1.449   +0.000   +0.000  +50.773 -555.028   +0.000   +1.449 TARGET     SCIENCE        0      0 22.726          
+
+
